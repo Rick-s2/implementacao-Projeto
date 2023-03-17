@@ -11,7 +11,7 @@ require_once(__DIR__ . "/../include/header.php");
     <div class="row">
         <div class="col-3">
             <a class="btn btn-success" 
-                href="#">Inserir</a>
+            href="<?= BASEURL ?>./controller/UsuarioController.php?action=create">Inserir</a>
         </div>
 
         <div class="col-9">
@@ -32,6 +32,21 @@ require_once(__DIR__ . "/../include/header.php");
                         <th>Excluir</th>
                     </tr>
                 </thead>
+                <tbody>
+                    <?php foreach($dados['lista'] as $usu): ?>
+                        <tr>
+                            <td><?php echo $usu->getId(); ?></td>
+                            <td><?= $usu->getNome(); ?></td>
+                            <td><?= $usu->getLogin(); ?></td>
+                            <td><?= $usu->getPapeis(); ?></td>
+                            <td><a class="btn btn-primary" 
+                                    href="<?= BASEURL ?>./controller/UsuarioController.php?action=edit&id=<?= $usu->getId() ?>">Alterar
+                                </a>
+                            </td>
+                            <td><a class="btn btn-danger" href="">Excluir</a></td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
                 <tbody>
                     
                 </tbody>

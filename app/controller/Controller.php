@@ -33,18 +33,19 @@ class Controller {
 
     }
 
-    protected function loadView(string $path, array $dados) {
+    protected function loadView(string $path, array $dados, string $msgErro = "") {
         //----Prints para validar as informações da tela----
         //Pode ser feito um print_r dos parâmetros para saber quais informações estão disponíveis
         //print_r($dados);
         //print("<pre>".print_r($dados, true)."</pre>");
+
+        $msgErro = "";
 
         $caminho = __DIR__ . "/../view/" . $path;
         //echo $caminho;
         if(file_exists($caminho)) {
             require $caminho;
 
-            print_r($dados["lista"]);
         } else {
             echo "Erro ao carrega a view solicitada<br>";
             echo "Caminho: " . $caminho;

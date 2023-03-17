@@ -5,14 +5,14 @@
 require_once(__DIR__ . "/../include/header.php");
 ?>
 
-<h3 class="text-center">Usuário</h3>
+<h3 class="text-center"><?php if($dados['id'] == 0) echo "Inserir"; else echo "Alterar";?> Usuário</h3>
 
 <div class="container">
     
     <div class="row" style="margin-top: 10px;">
         
         <div class="col-6">
-            <form id="frmUsuario" >
+            <form id="frmUsuario" method="POST" action="<?= BASEURL ?>./controller/UsuarioController.php?action=save">
                 <div class="form-group">
                     <label for="txtNome">Nome:</label>
                     <input class="form-control" type="text" id="txtNome" name="nome" 
@@ -46,7 +46,7 @@ require_once(__DIR__ . "/../include/header.php");
                 </div>
 
                 <input type="hidden" id="hddId" name="id" 
-                    value="" />
+                    value="<?= $dados['id']; ?>" />
 
                 <button type="submit" class="btn btn-success">Gravar</button>
                 <button type="reset" class="btn btn-danger">Limpar</button>
@@ -54,7 +54,7 @@ require_once(__DIR__ . "/../include/header.php");
         </div>
 
         <div class="col-6">
-            
+            <?php require_once(__DIR__ . "/../include/msg.php"); ?>
         </div>
     </div>
 
