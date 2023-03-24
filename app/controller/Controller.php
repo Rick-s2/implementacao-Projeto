@@ -31,7 +31,7 @@ class Controller {
 
     }
 
-    protected function loadView(string $path, array $dados, string $msgErro = "") {
+    protected function loadView(string $path, array $dados, string $msgErro = "", string $msgSucesso = "") {
         
         //Verificar os dados que estão sendo recebidos na função
         //print_r($dados);

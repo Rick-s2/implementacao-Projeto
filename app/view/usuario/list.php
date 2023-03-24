@@ -16,7 +16,7 @@ require_once(__DIR__ . "/../include/header.php");
         </div>
 
         <div class="col-9">
-            
+            <?php require_once(__DIR__ . "/../include/msg.php"); ?>
         </div>
     </div>
 
@@ -44,7 +44,7 @@ require_once(__DIR__ . "/../include/header.php");
                                 href="<?= BASEURL ?>/controller/UsuarioController.php?action=edit&id=<?= $usu->getId() ?>">
                                 Alterar</a> 
                             </td>
-                            <td><a class="btn btn-danger" href="">
+                            <td><a class="btn btn-danger" onclick="return confirm('Deseja excluir o usuário?')" href="<?= BASEURL ?>/controller/UsuarioController.php?action=delete&id=<?= $usu->getId() ?>">
                                 Excluir</a> 
                             </td>
                         </tr>

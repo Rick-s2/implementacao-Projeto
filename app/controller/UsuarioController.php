@@ -18,12 +18,12 @@ class UsuarioController extends Controller {
     }
 
     /* Método para chamar a view com a listagem dos Usuarios */
-    protected function list() {
+    protected function list(string $msgErro = "", string $msgSucesso = "") {
         $usuarios = $this->usuarioDao->list();
         //print_r($usuarios);
         $dados["lista"] = $usuarios;
 
-        $this->loadView("usuario/list.php", $dados);
+        $this->loadView("usuario/list.php", $dados,$msgErro, $msgSucesso);
     }
 
     protected function create() {
@@ -32,13 +32,19 @@ class UsuarioController extends Controller {
     }
 
     protected function edit() {
-        $id = 0;
-        if(isset($_GET['id']))
-            $id = $_GET['id'];
+        $usuario = $this->findUsuarioById();
 
-        $dados["id"] = $id;
-        $this->loadView("usuario/form.php", $dados);
+        if($usuario){
+            $dados["id"] = $usuario->getId();
+            $usuario->setSenha("");
+            $dados["usuario"] = $usuario;        
+            $this->loadView("usuario/form.php", $dados);
+        } else {
+            $this->list("Usuário não encontrado.");
+        }
+
     }
+    
 
     protected function save() {
         //Captura os dados do formulário
@@ -62,10 +68,12 @@ class UsuarioController extends Controller {
                 if($dados["id"] == 0) //Inserindo
                     $this->usuarioDao->insert($usuario);
                 else //Alterando
+                    $usuario->setId($dados["id"]);
                     $this->usuarioDao->update($usuario);
 
                 //TODO - Enviar mensagem de sucesso
-                $this->list();
+                $msg = "Usuário salvo com sucesso.";
+                $this->list("", $msg);
                 exit;
             } catch (PDOException $e) {
                 $erros = "[Erro ao salvar o usuário na base de dados.]";                
@@ -83,6 +91,26 @@ class UsuarioController extends Controller {
 
         $msgsErro = implode("<br>", $erros);
         $this->loadView("usuario/form.php", $dados, $msgsErro);
+    }
+
+    protected function delete(){
+        $usuario = $this->findUsuarioById();
+        if($usuario){
+           $this->usuarioDao->deleteById($usuario->getId());
+           $this->list("","Usuário excluído com sucesso.");
+        } else {
+            $this->list("Usuário não encontrado.");
+        }
+    }
+    protected function findUsuarioById(){
+        $id = 0;
+        if(isset($_GET['id']))
+            $id = $_GET['id'];
+
+        $dados["id"] = $id;
+
+        $usuario = $this->usuarioDao->findById($id);
+        return $usuario;
     }
 
 }
