@@ -6,11 +6,11 @@
 define('DB_HOST', 'localhost');
 define('DB_NAME', 'db_projeto_integrador');
 define('DB_USER', 'root');
-define('DB_PASSWORD', '');
+define('DB_PASSWORD', 'bancodedados');
 
 //Caminho para adionar imagens, scripts e chamar páginas no sistema
 //Deve ter o nome da pasta do projeto no servidor APACHE
-define('BASEURL', '/Implementacao-Projeto/app');
+define('BASEURL', '/implementacao-Projeto/app');
 
 //Nome do sistema
 define('APP_NAME', 'Template do Projeto Integrador');
@@ -28,6 +28,10 @@ define('LOGOUT_PAGE', BASEURL . '/controller/LoginController.php?action=logout')
 define('SESSAO_USUARIO_ID', "usuarioLogadoId");
 define('SESSAO_USUARIO_NOME', "usuarioLogadoNome");
 define('SESSAO_USUARIO_PAPEIS', "usuarioLogadoPapeis");
+
+
+
+
 
 
 

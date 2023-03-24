@@ -1,12 +1,10 @@
 <?php
-#Nome do arquivo: Controller.php
-#Objetivo: classe padrão para ser herdada pelos demais controllers
+#Classe controller padrão
 
 require_once(__DIR__ . "/../util/config.php");
 
 class Controller {
 
-    /* Método para processar a ação */
     protected function handleAction() {
         //Captura a ação do parâmetro GET
         $action = NULL;
@@ -34,18 +32,15 @@ class Controller {
     }
 
     protected function loadView(string $path, array $dados, string $msgErro = "") {
-        //----Prints para validar as informações da tela----
-        //Pode ser feito um print_r dos parâmetros para saber quais informações estão disponíveis
+        
+        //Verificar os dados que estão sendo recebidos na função
         //print_r($dados);
-        //print("<pre>".print_r($dados, true)."</pre>");
-
-        $msgErro = "";
+        //exit;
 
         $caminho = __DIR__ . "/../view/" . $path;
         //echo $caminho;
         if(file_exists($caminho)) {
             require $caminho;
-
         } else {
             echo "Erro ao carrega a view solicitada<br>";
             echo "Caminho: " . $caminho;

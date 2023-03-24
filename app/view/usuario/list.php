@@ -11,7 +11,8 @@ require_once(__DIR__ . "/../include/header.php");
     <div class="row">
         <div class="col-3">
             <a class="btn btn-success" 
-            href="<?= BASEURL ?>./controller/UsuarioController.php?action=create">Inserir</a>
+                href="<?= BASEURL ?>/controller/UsuarioController.php?action=create">
+                Inserir</a>
         </div>
 
         <div class="col-9">
@@ -40,15 +41,14 @@ require_once(__DIR__ . "/../include/header.php");
                             <td><?= $usu->getLogin(); ?></td>
                             <td><?= $usu->getPapeis(); ?></td>
                             <td><a class="btn btn-primary" 
-                                    href="<?= BASEURL ?>./controller/UsuarioController.php?action=edit&id=<?= $usu->getId() ?>">Alterar
-                                </a>
+                                href="<?= BASEURL ?>/controller/UsuarioController.php?action=edit&id=<?= $usu->getId() ?>">
+                                Alterar</a> 
                             </td>
-                            <td><a class="btn btn-danger" href="">Excluir</a></td>
+                            <td><a class="btn btn-danger" href="">
+                                Excluir</a> 
+                            </td>
                         </tr>
                     <?php endforeach; ?>
-                </tbody>
-                <tbody>
-                    
                 </tbody>
             </table>
         </div>
