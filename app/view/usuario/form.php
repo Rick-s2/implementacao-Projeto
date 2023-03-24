@@ -22,7 +22,7 @@ require_once(__DIR__ . "/../include/header.php");
                     <input class="form-control" type="text" id="txtNome" name="nome" 
                         maxlength="70" placeholder="Informe o nome"
                         value="<?php
-                            echo $dados['usuario']? $dados["usuario"]->getNome(): "";
+                            echo $dados['usuario'] ? $dados['usuario']->getNome(): "";
                         ?>" />
                 </div>
                 
@@ -31,7 +31,7 @@ require_once(__DIR__ . "/../include/header.php");
                     <input class="form-control" type="text" id="txtLogin" name="login" 
                         maxlength="15" placeholder="Informe o login"
                         value="<?php
-                            echo $dados['usuario']? $dados["usuario"]->getLogin(): "";
+                            echo $dados['usuario']? $dados['usuario']->getLogin(): "";
                         ?>"/>
                 </div>
 
@@ -40,7 +40,7 @@ require_once(__DIR__ . "/../include/header.php");
                     <input class="form-control" type="password" id="txtPassword" name="senha" 
                         maxlength="15" placeholder="Informe a senha"
                         value="<?php
-                            echo $dados['usuario']? $dados["usuario"]->getSenha(): "";
+                            echo $dados['usuario']? $dados['usuario']->getSenha(): "";
                         ?>"/>
                 </div>
 
