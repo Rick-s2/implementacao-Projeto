@@ -22,7 +22,8 @@ class UsuarioService {
             array_push($erros, "O campo [Confirmação da senha] é obrigatório.");
 
         //Validar se a senha é igual a contra senha
-        //TODO
+        if($usuario->getSenha() != $confSenha)
+            array_push($erros, "O campo [Senha] e [Confirmação da senha] devem ser iguais.");
 
         return $erros;
     }

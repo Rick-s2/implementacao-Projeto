@@ -75,8 +75,14 @@ class UsuarioController extends Controller {
         //Se há erros, volta para o formulário
         
         //TODO - Transformar o array de erros em string
-        //TODO - Carregar os valores recebidos por POST de volta para o formulário
-        $this->loadView("usuario/form.php", $dados, $erros[0]);
+        $dados["usuario"] = $usuario;
+        $dados["nome"] = $nome;
+        $dados["login"] = $login;
+        $dados["senha"] = $senha;
+        $dados["confSenha"] = $confSenha;
+
+        $msgsErro = implode("<br>", $erros);
+        $this->loadView("usuario/form.php", $dados, $msgsErro);
     }
 
 }

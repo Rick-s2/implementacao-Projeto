@@ -21,28 +21,36 @@ require_once(__DIR__ . "/../include/header.php");
                     <label for="txtNome">Nome:</label>
                     <input class="form-control" type="text" id="txtNome" name="nome" 
                         maxlength="70" placeholder="Informe o nome"
-                        value="" />
+                        value="<?php
+                            echo $dados['usuario']? $dados["usuario"]->getNome(): "";
+                        ?>" />
                 </div>
                 
                 <div class="form-group">
                     <label for="txtLogin">Login:</label>
                     <input class="form-control" type="text" id="txtLogin" name="login" 
                         maxlength="15" placeholder="Informe o login"
-                        value=""/>
+                        value="<?php
+                            echo $dados['usuario']? $dados["usuario"]->getLogin(): "";
+                        ?>"/>
                 </div>
 
                 <div class="form-group">
                     <label for="txtSenha">Senha:</label>
                     <input class="form-control" type="password" id="txtPassword" name="senha" 
                         maxlength="15" placeholder="Informe a senha"
-                        value=""/>
+                        value="<?php
+                            echo $dados['usuario']? $dados["usuario"]->getSenha(): "";
+                        ?>"/>
                 </div>
 
                 <div class="form-group">
                     <label for="txtConfSenha">Confirmação da senha:</label>
                     <input class="form-control" type="password" id="txtConfSenha" name="conf_senha" 
                         maxlength="15" placeholder="Informe a confirmação da senha"
-                        value=""/>
+                        value="<?php
+                            echo $dados['confSenha'];
+                        ?>"/>
                 </div>
 
                 <div class="form-group">
