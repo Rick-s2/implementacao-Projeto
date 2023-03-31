@@ -4,6 +4,7 @@ require_once(__DIR__ . "/Controller.php");
 require_once(__DIR__ . "/../dao/UsuarioDAO.php");
 require_once(__DIR__ . "/../service/UsuarioService.php");
 require_once(__DIR__ . "/../model/Usuario.php");
+require_once(__DIR__ . "/../model/enum/UsuarioPapel.php");
 
 class UsuarioController extends Controller {
 
@@ -28,6 +29,7 @@ class UsuarioController extends Controller {
 
     protected function create() {
         $dados["id"] = 0;
+        $dados["papeis"] = UsuarioPapel::getAllAsArray();
         $this->loadView("usuario/form.php", $dados);
     }
 
@@ -36,7 +38,8 @@ class UsuarioController extends Controller {
 
         if($usuario){
             $dados["id"] = $usuario->getId();
-            $usuario->setSenha("");
+            $dados["papeis"] = UsuarioPapel::getAllAsArray();
+            $dados["senha"]->setSenha("");
             $dados["usuario"] = $usuario;        
             $this->loadView("usuario/form.php", $dados);
         } else {
@@ -54,11 +57,19 @@ class UsuarioController extends Controller {
         $senha = isset($_POST['senha']) ? trim($_POST['senha']) : NULL;
         $confSenha = isset($_POST['conf_senha']) ? trim($_POST['conf_senha']) : NULL;
 
+        //Captura os papeis do formulário
+        $papeis = array();
+        foreach(UsuarioPapel::getAllAsArray() as $papel) {
+            if(isset($_POST[$papel]))
+                array_push($papeis, $papel);
+        }
+
         //Cria objeto Usuario
         $usuario = new Usuario();
         $usuario->setNome($nome);
         $usuario->setLogin($login);
         $usuario->setSenha($senha);
+        $usuario->setPapeisAsArray($papeis);
 
         //Validar os dados
         $erros = $this->usuarioService->validarDados($usuario, $confSenha);
@@ -88,6 +99,7 @@ class UsuarioController extends Controller {
         $dados["login"] = $login;
         $dados["senha"] = $senha;
         $dados["confSenha"] = $confSenha;
+        $dados["papeis"] = UsuarioPapel::getAllAsArray();
 
         $msgsErro = implode("<br>", $erros);
         $this->loadView("usuario/form.php", $dados, $msgsErro);

@@ -39,7 +39,7 @@ require_once(__DIR__ . "/../include/header.php");
                             <td><?php echo $usu->getId(); ?></td>
                             <td><?= $usu->getNome(); ?></td>
                             <td><?= $usu->getLogin(); ?></td>
-                            <td><?= $usu->getPapeis(); ?></td>
+                            <td><?= $usu->getPapeisStr(); ?></td>
                             <td><a class="btn btn-primary" 
                                 href="<?= BASEURL ?>/controller/UsuarioController.php?action=edit&id=<?= $usu->getId() ?>">
                                 Alterar</a> 

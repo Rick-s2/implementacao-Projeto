@@ -55,6 +55,18 @@ require_once(__DIR__ . "/../include/header.php");
 
                 <div class="form-group">
                     <label>Papéis do usuário:</label>
+                    <?php foreach($dados["papeis"] as $papel):?>
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" name="<?= $papel?>" id="<?= 'ckc' . $papel?>"
+                                <?php
+                                    if($dados['usuario'] && in_array($papel, $dados['usuario']->getPapeisAsAray()))
+                                        echo "checked";
+                                ?>
+                            />
+                            <label for="<?= 'ckc' . $papel?>" id="<?= 'ckc' . $papel?>" class="form-check-label"><?= $papel?></label>
+                        </div>
+                        <?php endforeach; ?>
+
                 </div>
 
                 <input type="hidden" id="hddId" name="id" 

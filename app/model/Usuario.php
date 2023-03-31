@@ -111,5 +111,24 @@ class Usuario {
         $this->papeis = $papeis;
 
         return $this;
-    }    
+    }  
+
+    public function getPapeisAsArray(){
+        if($this->papeis)
+            return explode(UsuarioPapel::$SEPARADOR, $this->papeis);
+        
+        return array();
+    }
+
+    public function setPapeisAsArray($array){
+        if($array){
+            $this->papeis = implode(UsuarioPapel::$SEPARADOR, $array);
+        }
+        else
+            $this->papeis = NULL;
+    }  
+    public function getPapeisStr(){
+        
+            return str_replace(UsuarioPapel::$SEPARADOR,", ", $this->papeis);
+    }
 }
