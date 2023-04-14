@@ -22,7 +22,7 @@ require_once(__DIR__ . "/../include/header.php");
                     <input class="form-control" type="text" id="txtNome" name="nome" 
                         maxlength="70" placeholder="Informe o nome"
                         value="<?php
-                            echo $dados['usuario'] ? $dados['usuario']->getNome(): "";
+                            echo (isset($dados['usuario']) ? $dados['usuario']->getNome(): "");
                         ?>" />
                 </div>
                 
@@ -31,7 +31,7 @@ require_once(__DIR__ . "/../include/header.php");
                     <input class="form-control" type="text" id="txtLogin" name="login" 
                         maxlength="15" placeholder="Informe o login"
                         value="<?php
-                            echo $dados['usuario']? $dados['usuario']->getLogin(): "";
+                            echo (isset ($dados['usuario'])? $dados['usuario']->getLogin(): "");
                         ?>"/>
                 </div>
 
@@ -40,7 +40,7 @@ require_once(__DIR__ . "/../include/header.php");
                     <input class="form-control" type="password" id="txtPassword" name="senha" 
                         maxlength="15" placeholder="Informe a senha"
                         value="<?php
-                            echo $dados['usuario']? $dados['usuario']->getSenha(): "";
+                            echo (isset ($dados['usuario'])? $dados['usuario']->getSenha(): "");
                         ?>"/>
                 </div>
 
@@ -49,7 +49,7 @@ require_once(__DIR__ . "/../include/header.php");
                     <input class="form-control" type="password" id="txtConfSenha" name="conf_senha" 
                         maxlength="15" placeholder="Informe a confirmação da senha"
                         value="<?php
-                            echo $dados['confSenha'];
+                            echo (isset ($dados['confSenha'])? $dados['confSenha'] : "");
                         ?>"/>
                 </div>
 
@@ -59,7 +59,7 @@ require_once(__DIR__ . "/../include/header.php");
                         <div class="form-check">
                             <input type="checkbox" class="form-check-input" name="<?= $papel?>" id="<?= 'ckc' . $papel?>"
                                 <?php
-                                    if($dados['usuario'] && in_array($papel, $dados['usuario']->getPapeisAsAray()))
+                                    if(isset($dados['usuario']) && in_array($papel, $dados['usuario']->getPapeisAsArray()))
                                         echo "checked";
                                 ?>
                             />

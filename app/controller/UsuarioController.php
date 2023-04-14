@@ -39,7 +39,7 @@ class UsuarioController extends Controller {
         if($usuario){
             $dados["id"] = $usuario->getId();
             $dados["papeis"] = UsuarioPapel::getAllAsArray();
-            $dados["senha"]->setSenha("");
+            $usuario->setSenha("");
             $dados["usuario"] = $usuario;        
             $this->loadView("usuario/form.php", $dados);
         } else {
