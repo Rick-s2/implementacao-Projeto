@@ -28,11 +28,12 @@ CREATE TABLE tb_usuarios (
   papeis varchar(255),
   status_usuario varchar(70) NOT NULL,
   PRIMARY KEY (id_usuario),
-  CONSTRAINT fk_id_endereco FOREIGN KEY (id_endereco) REFERENCES tb_endereco (id_endereco),
-  CONSTRAINT fk_id_contato FOREIGN KEY (id_contato) REFERENCES tb_contato (id_contato)
+  FOREIGN KEY (id_endereco) REFERENCES tb_enderecos (id_endereco),
+  FOREIGN KEY (id_contato) REFERENCES tb_contatos (id_contato),
+  CONSTRAINT uk_usuarios UNIQUE (login)
 );
-ALTER TABLE usuarios ADD CONSTRAINT uk_usuarios UNIQUE KEY (login);
+
 
 /*Inserts usuarios*/
-INSERT INTO usuarios (nome_usuario, login, senha) VALUES ('Sr. Administrador', 'admin', 'admin');
-INSERT INTO usuarios (nome_usuario, login, senha) VALUES ('Sr. Root', 'root', 'root');
+INSERT INTO tb_usuarios me, cpf, logi(non, senha, papeis, status_usuario) VALUES ('Sr. Administrador', '11122233344', 'admin', 'admin', 'ADMINISTRADOR', 'ATIVO');
+INSERT INTO tb_usuarios (nome, cpf, login, senha, papeis, status_usuario) VALUES ('Sr. Root', '44433322211', 'root', 'root', 'USUARIO', 'ATIVO');
