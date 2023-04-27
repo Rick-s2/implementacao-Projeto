@@ -11,7 +11,7 @@ class UsuarioDAO {
     public function list() {
         $conn = Connection::getConn();
 
-        $sql = "SELECT * FROM usuarios u ORDER BY u.nome_usuario";
+        $sql = "SELECT * FROM tb_usuarios u ORDER BY u.nome";
         $stm = $conn->prepare($sql);    
         $stm->execute();
         $result = $stm->fetchAll();
@@ -23,7 +23,7 @@ class UsuarioDAO {
     public function findById(int $id) {
         $conn = Connection::getConn();
 
-        $sql = "SELECT * FROM usuarios u" .
+        $sql = "SELECT * FROM tb_usuarios u" .
                " WHERE u.id_usuario = ?";
         $stm = $conn->prepare($sql);    
         $stm->execute([$id]);
@@ -45,7 +45,7 @@ class UsuarioDAO {
     public function findByLoginSenha(string $login, string $senha) {
         $conn = Connection::getConn();
 
-        $sql = "SELECT * FROM usuarios u" .
+        $sql = "SELECT * FROM tb_usuarios u" .
                " WHERE u.login = ? AND u.senha = ?";
         $stm = $conn->prepare($sql);    
         $stm->execute([$login, $senha]);
@@ -66,7 +66,7 @@ class UsuarioDAO {
     public function insert(Usuario $usuario) {
         $conn = Connection::getConn();
 
-        $sql = "INSERT INTO usuarios (nome_usuario, login, senha, papeis)" .
+        $sql = "INSERT INTO tb_usuarios (nome, login, senha, papeis)" .
                " VALUES (:nome, :login, :senha, :papeis)";
         
         $stm = $conn->prepare($sql);
@@ -81,7 +81,7 @@ class UsuarioDAO {
     public function update(Usuario $usuario) {
         $conn = Connection::getConn();
 
-        $sql = "UPDATE usuarios SET nome_usuario = :nome, login = :login," . 
+        $sql = "UPDATE tb_usuarios SET nome = :nome, login = :login," . 
                " senha = :senha, papeis = :papeis" .   
                " WHERE id_usuario = :id";
         
@@ -98,7 +98,7 @@ class UsuarioDAO {
     public function deleteById(int $id) {
         $conn = Connection::getConn();
 
-        $sql = "DELETE FROM usuarios WHERE id_usuario = :id";
+        $sql = "DELETE FROM tb_usuarios WHERE id_usuario = :id";
         
         $stm = $conn->prepare($sql);
         $stm->bindValue("id", $id);
@@ -111,7 +111,7 @@ class UsuarioDAO {
         foreach ($result as $reg) {
             $usuario = new Usuario();
             $usuario->setId($reg['id_usuario']);
-            $usuario->setNome($reg['nome_usuario']);
+            $usuario->setNome($reg['nome']);
             $usuario->setLogin($reg['login']);
             $usuario->setSenha($reg['senha']);
             $usuario->setPapeis($reg['papeis']);
