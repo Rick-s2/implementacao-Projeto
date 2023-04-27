@@ -10,6 +10,8 @@ require_once(__DIR__ . "/../include/header.php");
     Usuário
 </h3>
 
+
+
 <div class="container">
     
     <div class="row" style="margin-top: 10px;">
@@ -17,16 +19,31 @@ require_once(__DIR__ . "/../include/header.php");
         <div class="col-6">
             <form id="frmUsuario" method="POST" 
                 action="<?= BASEURL ?>/controller/UsuarioController.php?action=save" >
-                <div class="form-group">
-                    <label for="txtNome">Nome:</label>
-                    <input class="form-control" type="text" id="txtNome" name="nome" 
-                        maxlength="70" placeholder="Informe o nome"
-                        value="<?php
-                            echo (isset($dados['usuario']) ? $dados['usuario']->getNome(): "");
-                        ?>" />
+
+                <h2 class="text-center">
+                    Dados de identificação do Usuário
+                </h2>
+
+                <div class="row">
+                    <div class="form-group col-6">
+                        <label for="txtNome">Nome:</label>
+                        <input class="form-control" type="text" id="txtNome" name="nome" 
+                            maxlength="70" placeholder="Informe o nome"
+                            value="<?php
+                                echo (isset($dados['usuario']) ? $dados['usuario']->getNome(): "");
+                            ?>" />
+                    </div>
+                    <div class="form-group col-6">
+                        <label for="txtCpf">CPF:</label>
+                        <input class="form-control" type="text" id="txtCpf" name="cpf" 
+                            maxlength="11" placeholder="Informe o CPF"
+                            value="<?php
+                                echo (isset($dados['usuario']) ? $dados['usuario']->getCpf(): "");
+                            ?>" />
+                    </div>
                 </div>
                 
-                <div class="form-group">
+                <div class="form-group"  style="width: 50%;">
                     <label for="txtLogin">Login:</label>
                     <input class="form-control" type="text" id="txtLogin" name="login" 
                         maxlength="15" placeholder="Informe o login"
@@ -35,22 +52,24 @@ require_once(__DIR__ . "/../include/header.php");
                         ?>"/>
                 </div>
 
-                <div class="form-group">
-                    <label for="txtSenha">Senha:</label>
-                    <input class="form-control" type="password" id="txtPassword" name="senha" 
-                        maxlength="15" placeholder="Informe a senha"
-                        value="<?php
-                            echo (isset ($dados['usuario'])? $dados['usuario']->getSenha(): "");
-                        ?>"/>
-                </div>
+                <div class="row">
+                    <div class="form-group col-6">
+                        <label for="txtSenha">Senha:</label>
+                        <input class="form-control" type="password" id="txtPassword" name="senha" 
+                            maxlength="15" placeholder="Informe a senha"
+                            value="<?php
+                                echo (isset ($dados['usuario'])? $dados['usuario']->getSenha(): "");
+                            ?>"/>
+                    </div>
 
-                <div class="form-group">
-                    <label for="txtConfSenha">Confirmação da senha:</label>
-                    <input class="form-control" type="password" id="txtConfSenha" name="conf_senha" 
-                        maxlength="15" placeholder="Informe a confirmação da senha"
-                        value="<?php
-                            echo (isset ($dados['confSenha'])? $dados['confSenha'] : "");
-                        ?>"/>
+                    <div class="form-group col-6">
+                        <label for="txtConfSenha">Confirmação da senha:</label>
+                        <input class="form-control" type="password" id="txtConfSenha" name="conf_senha" 
+                            maxlength="15" placeholder="Informe a confirmação da senha"
+                            value="<?php
+                                echo (isset ($dados['confSenha'])? $dados['confSenha'] : "");
+                            ?>"/>
+                    </div>
                 </div>
 
                 <div class="form-group">
@@ -68,13 +87,97 @@ require_once(__DIR__ . "/../include/header.php");
                         <?php endforeach; ?>
 
                 </div>
+                <div class="form-group" style="width: 50%;">
+                    <label for="txtStatus">Status:</label>
+                    <input class="form-control" type="text" id="txtStatus" name="status" 
+                        maxlength="70" placeholder="Informe o status : ativo ou inativo"
+                        value="<?php
+                            echo (isset($dados['usuario']) ? $dados['usuario']->getStatus(): "");
+                        ?>" />
+                </div>
+
+                <h2 class="text-center">
+                    Dados de endereço do Usuário
+                </h2>
+
+                <div class="row">
+                    <div class="form-group col-6">
+                        <label for="txtCep">CEP:</label>
+                        <input class="form-control" type="text" id="txtCep" name="cep" 
+                            maxlength="9" placeholder="Informe o CEP, ex: 00000-000"
+                            value="" />
+                    </div>
+                    <div class="form-group col-6">
+                        <label for="txtLogradouro">Logradouro:</label>
+                        <input class="form-control" type="text" id="txtLogradouro" name="logradouro" 
+                            maxlength="255" placeholder="Informe o logradouro, ex: Rua, Avenida, etc"
+                            value="" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-6">
+                        <label for="numeroEndereco">Nº:</label>
+                        <input class="form-control" type="number" id="numeroEndereco" name="numeroEndereco" 
+                            maxlength="5" placeholder="Informe o número"
+                            value="" />
+                    </div>
+                    <div class="form-group col-6">
+                        <label for="txtBairro">Bairro:</label>
+                        <input class="form-control" type="text" id="txtBairro" name="bairro" 
+                            maxlength="100" placeholder="Informe o Bairro"
+                            value="" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-6">
+                        <label for="txtCidade">Cidade:</label>
+                        <input class="form-control" type="text" id="txtCidade" name="cidade" 
+                            maxlength="100" placeholder="Informe a cidade"
+                            value="" />
+                    </div>
+                    <div class="form-group col-6">
+                        <label for="txtPais">País:</label>
+                        <input class="form-control" type="text" id="txtPais" name="pais" 
+                            maxlength="45" placeholder="Informe o País"
+                            value="" />
+                    </div>
+                </div>
+
+                <h2 class="text-center">
+                    Dados de contato do Usuário
+                </h2>
+
+                <div class="row">
+                    <div class="form-group col-6">
+                        <label for="txtTelefone">Telefone:</label>
+                        <input class="form-control" type="text" id="txtTelefone" name="telefone" 
+                            maxlength="10" placeholder="Informe um telefone"
+                            value="" />
+                    </div>
+                    <div class="form-group col-6">
+                        <label for="txtCelular">Celular:</label>
+                        <input class="form-control" type="txt" id="txtCelular" name="celular" 
+                            maxlength="11" placeholder="Informe um celular"
+                            value="" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-6">
+                        <label for="txtEmail">E-mail:</label>
+                        <input class="form-control" type="email" id="txtEmail" name="email" 
+                            maxlength="100" placeholder="Informe um e-mail"
+                            value="" />
+                    </div>
+                </div>
 
                 <input type="hidden" id="hddId" name="id" 
                     value="<?= $dados['id']; ?>" />
 
                 <button type="submit" class="btn btn-success">Gravar</button>
                 <button type="reset" class="btn btn-danger">Limpar</button>
-            </form>            
+            </form>
+            
+            
         </div>
 
         <div class="col-6">

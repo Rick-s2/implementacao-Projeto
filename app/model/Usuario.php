@@ -10,8 +10,9 @@ class Usuario {
     private $nome;
     private $login;
     private $senha;
-
+    private $cpf;
     private $papeis;
+    private $status;
 
     /**
      * Get the value of id
@@ -92,6 +93,17 @@ class Usuario {
 
         return $this;
     }
+    public function getCpf()
+    {
+        return $this->cpf;
+    }
+
+    public function setCpf($cpf)
+    {
+        $this->cpf = $cpf;
+
+        return $this;
+    }
     
     /**
      * Get the value of papeis
@@ -111,7 +123,18 @@ class Usuario {
         $this->papeis = $papeis;
 
         return $this;
-    }  
+    }
+    public function getStatus()
+    {
+        return $this->status;
+    }
+    
+    public function setStatus($status)
+    {
+        $this->status = $status;
+
+        return $this;
+    }
 
     public function getPapeisAsArray(){
         if($this->papeis)
