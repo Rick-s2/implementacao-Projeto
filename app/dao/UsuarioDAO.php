@@ -66,11 +66,12 @@ class UsuarioDAO {
     public function insert(Usuario $usuario) {
         $conn = Connection::getConn();
 
-        $sql = "INSERT INTO tb_usuarios (nome, login, senha, papeis)" .
-               " VALUES (:nome, :login, :senha, :papeis)";
+        $sql = "INSERT INTO tb_usuarios (nome, cpf, login, senha, papeis)" .
+               " VALUES (:nome, :cpf, :login, :senha, :papeis)";
         
         $stm = $conn->prepare($sql);
         $stm->bindValue("nome", $usuario->getNome());
+        $stm->bindValue("cpf", $usuario->getCpf());
         $stm->bindValue("login", $usuario->getLogin());
         $stm->bindValue("senha", $usuario->getSenha());
         $stm->bindValue("papeis", $usuario->getPapeis());
@@ -81,12 +82,13 @@ class UsuarioDAO {
     public function update(Usuario $usuario) {
         $conn = Connection::getConn();
 
-        $sql = "UPDATE tb_usuarios SET nome = :nome, login = :login," . 
+        $sql = "UPDATE tb_usuarios SET nome = :nome, cpf = :cpf, login = :login," . 
                " senha = :senha, papeis = :papeis" .   
                " WHERE id_usuario = :id";
         
         $stm = $conn->prepare($sql);
         $stm->bindValue("nome", $usuario->getNome());
+        $stm->bindValue("cpf", $usuario->getCpf());
         $stm->bindValue("login", $usuario->getLogin());
         $stm->bindValue("senha", $usuario->getSenha());
         $stm->bindValue("papeis", $usuario->getPapeis());
@@ -112,6 +114,7 @@ class UsuarioDAO {
             $usuario = new Usuario();
             $usuario->setId($reg['id_usuario']);
             $usuario->setNome($reg['nome']);
+            $usuario->setCpf($reg['cpf']);
             $usuario->setLogin($reg['login']);
             $usuario->setSenha($reg['senha']);
             $usuario->setPapeis($reg['papeis']);

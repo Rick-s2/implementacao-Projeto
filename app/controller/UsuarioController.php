@@ -53,6 +53,7 @@ class UsuarioController extends Controller {
         //Captura os dados do formulário
         $dados["id"] = isset($_POST['id']) ? $_POST['id'] : 0;
         $nome = isset($_POST['nome']) ? trim($_POST['nome']) : NULL;
+        $cpf = isset($_POST['cpf']) ? trim($_POST['cpf']) : NULL;
         $login = isset($_POST['login']) ? trim($_POST['login']) : NULL;
         $senha = isset($_POST['senha']) ? trim($_POST['senha']) : NULL;
         $confSenha = isset($_POST['conf_senha']) ? trim($_POST['conf_senha']) : NULL;
@@ -67,6 +68,7 @@ class UsuarioController extends Controller {
         //Cria objeto Usuario
         $usuario = new Usuario();
         $usuario->setNome($nome);
+        $usuario->setCpf($cpf);
         $usuario->setLogin($login);
         $usuario->setSenha($senha);
         $usuario->setPapeisAsArray($papeis);

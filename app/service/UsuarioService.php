@@ -27,9 +27,6 @@ class UsuarioService {
         if(! $usuario->getPapeis())
             array_push($erros, "Selecione pelo menos um papel no campo [Papéis do Usuário].");
 
-        if(! $usuario->getStatus())
-            array_push($erros, "Campo [Status] é obrigatório.");
-
         //Validar se a senha é igual a contra senha
         if($usuario->getSenha() != $confSenha)
             array_push($erros, "O campo [Senha] e [Confirmação da senha] devem ser iguais.");

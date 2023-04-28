@@ -92,7 +92,7 @@ require_once(__DIR__ . "/../include/header.php");
                     <input readonly class="form-control" type="text" id="txtStatus" name="status" 
                         maxlength="70" placeholder="Informe o status : ativo ou inativo"
                         value="<?php
-                            //echo (isset($dados['usuario']) ? $dados['usuario']->getStatus(): "ATIVO");
+                            //'echo (isset($dados['usuario']) ? $dados['usuario']->getStatus(): "ATIVO");
                         ?>" />
                 </div>-->
 
