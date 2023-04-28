@@ -53,4 +53,32 @@ class Controller {
         echo "Verifique com o administrador do sistema.";
     }
 
+    //Método que verifica se o usuário está logado
+    protected function usuarioLogado() {
+        //Habilitar o recurso de sessão no PHP nesta página
+        session_start();
+
+        if(! isset($_SESSION[SESSAO_USUARIO_ID])) {
+            header("location: " . LOGIN_PAGE);
+            return false;
+        }
+
+        return true;
+    }
+
+    //Método que verifica se o usuário possui um papel necessário
+    public function usuarioPossuiPapel(array $papeisNecessarios) {
+        if(isset($_SESSION[SESSAO_USUARIO_ID])) {
+            $papeisUsuario = $_SESSION[SESSAO_USUARIO_PAPEIS];
+
+            //Percorre os papeis necessários e verifica se existem nos papéis do usuário
+            foreach($papeisNecessarios as $papel) {
+                if(in_array($papel, $papeisUsuario))
+                    return true;
+            }
+        }
+
+        return false;
+    }
+
 }
