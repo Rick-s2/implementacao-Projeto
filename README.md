@@ -10,3 +10,11 @@
   -> Henry Gabriel Barros Szchaida - 4° ano TDS - IFPR;
   -> Marco Aurélio Dias Souza - 4° ano TDS - IFPR;
   -> Ricardo Augusto da Cruz Troche - 4° ano TDS - IFPR;
+
+
+PROXIMO PASSO:
+
+CRIAR UPDATES CONTATO E ENDERECO
+CRIAR INSERT CONTATO 
+CRIAR CONEXAO ENTRE IDCONTATO, IDENDERECO COM O USUARIO
+FAZER APARECER O STATUS NO LIST.PHP
