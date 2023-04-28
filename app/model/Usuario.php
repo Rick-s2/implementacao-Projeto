@@ -7,6 +7,8 @@ require_once(__DIR__ . "/enum/UsuarioPapel.php");
 class Usuario {
 
     private $id;
+    private $idEndereco;
+    private $idContato;
     private $nome;
     private $login;
     private $senha;
@@ -30,6 +32,30 @@ class Usuario {
     public function setId($id)
     {
         $this->id = $id;
+
+        return $this;
+    }
+
+    public function getIdEndereco()
+    {
+        return $this->idEndereco;
+    }
+
+    public function setIdEndereco($idEndereco)
+    {
+        $this->idEndereco = $idEndereco;
+
+        return $this;
+    }
+
+    public function getIdContato()
+    {
+        return $this->idContato;
+    }
+
+    public function setIdContato($idContato)
+    {
+        $this->idContato = $idContato;
 
         return $this;
     }

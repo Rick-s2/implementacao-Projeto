@@ -35,5 +35,5 @@ CREATE TABLE tb_usuarios (
 
 
 /*Inserts usuarios*/
-INSERT INTO tb_usuarios me, cpf, logi(non, senha, papeis, status_usuario) VALUES ('Sr. Administrador', '11122233344', 'admin', 'admin', 'ADMINISTRADOR', 'ATIVO');
+INSERT INTO tb_usuarios (nome, cpf, login, senha, papeis, status_usuario) VALUES ('Sr. Administrador', '11122233344', 'admin', 'admin', 'ADMINISTRADOR', 'ATIVO');
 INSERT INTO tb_usuarios (nome, cpf, login, senha, papeis, status_usuario) VALUES ('Sr. Root', '44433322211', 'root', 'root', 'USUARIO', 'ATIVO');
