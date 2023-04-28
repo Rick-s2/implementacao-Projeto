@@ -29,6 +29,7 @@ require_once(__DIR__ . "/../include/header.php");
                         <th>Nome</th>
                         <th>Login</th>
                         <th>Papeis</th>
+                        <th>Status</th>
                         <th>Alterar</th>
                         <th>Excluir</th>
                     </tr>
@@ -40,6 +41,7 @@ require_once(__DIR__ . "/../include/header.php");
                             <td><?= $usu->getNome(); ?></td>
                             <td><?= $usu->getLogin(); ?></td>
                             <td><?= $usu->getPapeisStr(); ?></td>
+                            <td><?= $usu->getStatus(); ?></td>
                             <td><a class="btn btn-primary" 
                                 href="<?= BASEURL ?>/controller/UsuarioController.php?action=edit&id=<?= $usu->getId() ?>">
                                 Alterar</a> 

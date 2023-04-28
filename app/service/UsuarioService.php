@@ -1,11 +1,13 @@
 <?php
     
 require_once(__DIR__ . "/../model/Usuario.php");
+require_once(__DIR__ . "/../model/Endereco.php");
+require_once(__DIR__ . "/../model/Contato.php");
 
 class UsuarioService {
 
     /* Método para validar os dados do usuário que vem do formulário */
-    public function validarDados(Usuario $usuario, string $confSenha) {
+    public function validarDados(Usuario $usuario, Endereco $endereco, Contato $contato,string $confSenha) {
         $erros = array();
 
         //Validar campos vazios
@@ -31,7 +33,60 @@ class UsuarioService {
         if($usuario->getSenha() != $confSenha)
             array_push($erros, "O campo [Senha] e [Confirmação da senha] devem ser iguais.");
 
+        if(! $endereco->getCep())
+            array_push($erros, "O campo [CEP] é obrigatório.");
+
+        if(! $endereco->getLogradouro())
+            array_push($erros, "O campo [Logradouro] é obrigatório.");
+
+        if(! $endereco->getNumeroEndereco())
+            array_push($erros, "O campo [Número] é obrigatório.");
+        
+        if(! $endereco->getBairro())
+            array_push($erros, "O campo [Bairro] é obrigatório.");
+
+        if(! $endereco->getCidade())
+            array_push($erros, "O campo [Cidade] é obrigatório.");
+
+        if(! $endereco->getPais())
+            array_push($erros, "O campo [País] é obrigatório.");
+
+        if(! $contato->getTelefone())
+            array_push($erros, "O campo [Telefone] é obrigatório.");
+
+        if(! $contato->getCelular())
+            array_push($erros, "O campo [Celular] é obrigatório.");
+
+        if(! $contato->getEmail())
+            array_push($erros, "O campo [E-mail] é obrigatório.");
         return $erros;
+    }
+
+
+    public function insertUsu(Usuario $usuario){
+        $usuarioDao = new UsuarioDAO();
+        $usuarioDao->insert($usuario);
+    }
+    public function insertEnd(Endereco $endereco){
+        $enderecoDao = new EnderecoDAO();
+        $enderecoDao->insert($endereco);
+    }
+    public function insertCont(Contato $contato){
+        $contatoDao = new ContatoDAO();
+        $contatoDao->insert($contato);
+    }
+
+    public function updateUsu(Usuario $usuario){
+        $usuarioDao = new UsuarioDAO();
+        $usuarioDao->update($usuario);
+    }
+    public function updateEnd(Endereco $endereco){
+        $enderecoDao = new EnderecoDAO();
+        $enderecoDao->update($endereco);
+    }
+    public function updateCont(Contato $contato){
+        $contatoDao = new ContatoDAO();
+        $contatoDao->update($contato);
     }
 
 }

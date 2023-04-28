@@ -2,6 +2,7 @@
 
 class Contato{
 
+    private $id_contato;
     private $telefone;
     private $celular;
     private $email;
@@ -64,6 +65,26 @@ class Contato{
     public function setEmail($email)
     {
         $this->email = $email;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of id_contato
+     */ 
+    public function getId_contato()
+    {
+        return $this->id_contato;
+    }
+
+    /**
+     * Set the value of id_contato
+     *
+     * @return  self
+     */ 
+    public function setId_contato($id_contato)
+    {
+        $this->id_contato = $id_contato;
 
         return $this;
     }

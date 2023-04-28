@@ -2,6 +2,7 @@
 
 class Endereco{
 
+    private $id_endereco;
     private $cep;
     private $logradouro;
     private $numeroEndereco;
@@ -127,6 +128,26 @@ class Endereco{
     public function setPais($pais)
     {
         $this->pais = $pais;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of id_endereco
+     */ 
+    public function getId_endereco()
+    {
+        return $this->id_endereco;
+    }
+
+    /**
+     * Set the value of id_endereco
+     *
+     * @return  self
+     */ 
+    public function setId_endereco($id_endereco)
+    {
+        $this->id_endereco = $id_endereco;
 
         return $this;
     }

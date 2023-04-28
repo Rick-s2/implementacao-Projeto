@@ -64,25 +64,64 @@ class UsuarioController extends Controller {
             if(isset($_POST[$papel]))
                 array_push($papeis, $papel);
         }
+         //Cria objeto Usuario
+         $usuario = new Usuario();
+         $usuario->setNome($nome);
+         $usuario->setCpf($cpf);
+         $usuario->setLogin($login);
+         $usuario->setSenha($senha);
+         $usuario->setPapeisAsArray($papeis);
 
-        //Cria objeto Usuario
-        $usuario = new Usuario();
-        $usuario->setNome($nome);
-        $usuario->setCpf($cpf);
-        $usuario->setLogin($login);
-        $usuario->setSenha($senha);
-        $usuario->setPapeisAsArray($papeis);
+        //todo Captura dados endereço
+        $dados["id_endereco"] = isset($_POST['id_endereco']) ? $_POST['id_endereco'] : 0;
+        $cep = isset($_POST['cep']) ? trim($_POST['cep']) : NULL;
+        $logradouro = isset($_POST['logradouro']) ? trim($_POST['logradouro']) : NULL;
+        $numero = isset($_POST['numeroEndereco']) ? trim($_POST['numeroEndereco']) : NULL;
+        $bairro = isset($_POST['bairro']) ? trim($_POST['bairro']) : NULL;
+        $cidade = isset($_POST['cidade']) ? trim($_POST['cidade']) : NULL;
+        $pais = isset($_POST['pais']) ? trim($_POST['pais']) : NULL;
+        //todo Cria objeto endereço
+        $endereco = new Endereco();
+        $endereco->setCep($cep);
+        $endereco->setLogradouro($logradouro);
+        $endereco->setNumeroEndereco($numero);
+        $endereco->setBairro($bairro);
+        $endereco->setCidade($cidade);
+        $endereco->setPais($pais);
+        
+        //todo Captura dados contato
+        $dados["id_contato"] = isset($_POST['id_contato']) ? $_POST['id_contato'] : 0;
+        $telefone = isset($_POST['telefone']) ? trim($_POST['telefone']) : NULL;
+        $celular = isset($_POST['celular']) ? trim($_POST['celular']) : NULL;
+        $email = isset($_POST['email']) ? trim($_POST['email']) : NULL; 
+        //todo Cria objeto contato
+        $contato = new Contato();
+        $contato->setTelefone($telefone);
+        $contato->setCelular($celular);
+        $contato->setEmail($email);
+        //todo Valida dados contato
+
+       
 
         //Validar os dados
-        $erros = $this->usuarioService->validarDados($usuario, $confSenha);
+        $erros = $this->usuarioService->validarDados($usuario, $endereco, $contato, $confSenha);
+
         if(empty($erros)) {
             //Persiste o objeto
             try {
-                if($dados["id"] == 0) //Inserindo
-                    $this->usuarioDao->insert($usuario);
-                else //Alterando
+                if($dados["id"] == 0){ //Inserindo
+                    $this->usuarioService->insertUsu($usuario);
+                    $this->usuarioService->insertEnd($endereco);
+                    $this->usuarioService->insertCont($contato);
+                }
+                else {//Alterando
                     $usuario->setId($dados["id"]);
-                    $this->usuarioDao->update($usuario);
+                    $this->usuarioService->updateUsu($usuario);
+                    $endereco->setId_endereco($dados["id_endereco"]);
+                    $this->usuarioService->updateEnd($endereco);
+                    $contato->setId_contato($dados["id_contato"]);
+                    $this->usuarioService->updateCont($contato);
+                }
 
                 //TODO - Enviar mensagem de sucesso
                 $msg = "Usuário salvo com sucesso.";
