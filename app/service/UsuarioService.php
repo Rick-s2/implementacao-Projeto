@@ -51,9 +51,6 @@ class UsuarioService {
         if(! $endereco->getPais())
             array_push($erros, "O campo [País] é obrigatório.");
 
-        if(! $contato->getTelefone())
-            array_push($erros, "O campo [Telefone] é obrigatório.");
-
         if(! $contato->getCelular())
             array_push($erros, "O campo [Celular] é obrigatório.");
 

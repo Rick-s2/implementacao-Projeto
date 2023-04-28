@@ -35,7 +35,7 @@ class EnderecoDAO{
             " - Erro: mais de um endereco encontrado.");
     }
 
-    //Método para converter um registro da base de dados em um objeto Usuario
+    //Método para converter um registro da base de dados em um objeto Endereco
     private function mapEnderecos($result) {
         $enderecos = array();
         foreach ($result as $reg) {
@@ -52,7 +52,7 @@ class EnderecoDAO{
         return $enderecos;
     }
 
-    //Método para inserir um Usuario
+    //Método para inserir um Endereço
     public function insert(Endereco $endereco) {
         $conn = Connection::getConn();
 
@@ -67,6 +67,34 @@ class EnderecoDAO{
         $stm->bindValue("cidade", $endereco->getCidade());
         $stm->bindValue("pais", $endereco->getPais());
 
+        $stm->execute();
+    }
+    //Método para atualizar um Endereço
+    public function update(Endereco $endereco) {
+        $conn = Connection::getConn();
+
+        $sql = "UPDATE tb_enderecos SET cep = :cep, logradouro = :logradouro, numero_endereco," . 
+               " bairro = :bairro, cidade = :cidade, pais = :pais" .   
+               " WHERE id_endereco = :id_endereco";
+        
+        $stm = $conn->prepare($sql);
+        $stm->bindValue("cep", $endereco->getCep());
+        $stm->bindValue("logradouro", $endereco->getLogradouro());
+        $stm->bindValue("numero_endereco", $endereco->getNumeroEndereco());
+        $stm->bindValue("bairro", $endereco->getBairro());
+        $stm->bindValue("cidade", $endereco->getCidade());
+        $stm->bindValue("pais", $endereco->getPais());
+        $stm->bindValue("id_endereco", $endereco->getId_endereco());
+        $stm->execute();
+    }
+    //Método para excluir um Endereco pelo seu ID
+    public function deleteById(int $id) {
+        $conn = Connection::getConn();
+
+        $sql = "DELETE FROM tb_enderecos WHERE id_endereco = :id_endereco";
+        
+        $stm = $conn->prepare($sql);
+        $stm->bindValue("id_endereco", $id);
         $stm->execute();
     }
 }

@@ -2,17 +2,25 @@
 #Classe controller para Usuário
 require_once(__DIR__ . "/Controller.php");
 require_once(__DIR__ . "/../dao/UsuarioDAO.php");
+require_once(__DIR__ . "/../dao/EnderecoDAO.php");
+require_once(__DIR__ . "/../dao/ContatoDAO.php");
 require_once(__DIR__ . "/../service/UsuarioService.php");
 require_once(__DIR__ . "/../model/Usuario.php");
+require_once(__DIR__ . "/../model/Endereco.php");
+require_once(__DIR__ . "/../model/Contato.php");
 require_once(__DIR__ . "/../model/enum/UsuarioPapel.php");
 
 class UsuarioController extends Controller {
 
     private UsuarioDAO $usuarioDao;
+    private EnderecoDAO $enderecoDao;
+    private ContatoDAO $contatoDao;
     private UsuarioService $usuarioService;
 
     public function __construct() {
         $this->usuarioDao = new UsuarioDAO();
+        $this->enderecoDao = new EnderecoDAO();
+        $this->contatoDao = new ContatoDAO();
         $this->usuarioService = new UsuarioService();
 
         $this->handleAction();
@@ -72,7 +80,7 @@ class UsuarioController extends Controller {
          $usuario->setSenha($senha);
          $usuario->setPapeisAsArray($papeis);
 
-        //todo Captura dados endereço
+        // Captura dados endereço
         $dados["id_endereco"] = isset($_POST['id_endereco']) ? $_POST['id_endereco'] : 0;
         $cep = isset($_POST['cep']) ? trim($_POST['cep']) : NULL;
         $logradouro = isset($_POST['logradouro']) ? trim($_POST['logradouro']) : NULL;
@@ -80,7 +88,7 @@ class UsuarioController extends Controller {
         $bairro = isset($_POST['bairro']) ? trim($_POST['bairro']) : NULL;
         $cidade = isset($_POST['cidade']) ? trim($_POST['cidade']) : NULL;
         $pais = isset($_POST['pais']) ? trim($_POST['pais']) : NULL;
-        //todo Cria objeto endereço
+        // Cria objeto endereço
         $endereco = new Endereco();
         $endereco->setCep($cep);
         $endereco->setLogradouro($logradouro);
@@ -89,17 +97,17 @@ class UsuarioController extends Controller {
         $endereco->setCidade($cidade);
         $endereco->setPais($pais);
         
-        //todo Captura dados contato
+        // Captura dados contato
         $dados["id_contato"] = isset($_POST['id_contato']) ? $_POST['id_contato'] : 0;
         $telefone = isset($_POST['telefone']) ? trim($_POST['telefone']) : NULL;
         $celular = isset($_POST['celular']) ? trim($_POST['celular']) : NULL;
         $email = isset($_POST['email']) ? trim($_POST['email']) : NULL; 
-        //todo Cria objeto contato
+        // Cria objeto contato
         $contato = new Contato();
         $contato->setTelefone($telefone);
         $contato->setCelular($celular);
         $contato->setEmail($email);
-        //todo Valida dados contato
+        // Valida dados contato
 
        
 
@@ -123,7 +131,7 @@ class UsuarioController extends Controller {
                     $this->usuarioService->updateCont($contato);
                 }
 
-                //TODO - Enviar mensagem de sucesso
+                // - Enviar mensagem de sucesso
                 $msg = "Usuário salvo com sucesso.";
                 $this->list("", $msg);
                 exit;
@@ -137,10 +145,22 @@ class UsuarioController extends Controller {
         //TODO - Transformar o array de erros em string
         $dados["usuario"] = $usuario;
         $dados["nome"] = $nome;
+        $dados["cpf"] = $cpf;
         $dados["login"] = $login;
         $dados["senha"] = $senha;
         $dados["confSenha"] = $confSenha;
         $dados["papeis"] = UsuarioPapel::getAllAsArray();
+        $dados["endereco"] = $endereco;
+        $dados["contato"] = $contato;
+        $dados["cep"] = $cep;
+        $dados["logradouro"] = $logradouro;
+        $dados["numeroEndereco"] = $numero;
+        $dados["bairro"] = $bairro;
+        $dados["cidade"] = $cidade;
+        $dados["pais"] = $pais;
+        $dados["telefone"] = $telefone;
+        $dados["celular"] = $celular;
+        $dados["email"] = $email;
 
         $msgsErro = implode("<br>", $erros);
         $this->loadView("usuario/form.php", $dados, $msgsErro);
@@ -148,9 +168,13 @@ class UsuarioController extends Controller {
 
     protected function delete(){
         $usuario = $this->findUsuarioById();
-        if($usuario){
-           $this->usuarioDao->deleteById($usuario->getId());
-           $this->list("","Usuário excluído com sucesso.");
+        $endereco = $this->findEnderecoById();
+        $contato = $this->findContatoById();
+        if($usuario && $endereco && $contato){
+            $this->usuarioDao->deleteById($usuario->getId());
+            $this->enderecoDao->deleteById($endereco->getId_endereco());
+            $this->contatoDao->deleteById($contato->getId_contato());
+            $this->list("","Usuário excluído com sucesso.");
         } else {
             $this->list("Usuário não encontrado.");
         }
@@ -164,6 +188,26 @@ class UsuarioController extends Controller {
 
         $usuario = $this->usuarioDao->findById($id);
         return $usuario;
+    }
+    protected function findEnderecoById(){
+        $id_endereco = 0;
+        if(isset($_GET['id_endereco']))
+            $id_endereco = $_GET['id_endereco'];
+
+        $dados["id_endereco"] = $id_endereco;
+
+        $endereco = $this->enderecoDao->findById($id_endereco);
+        return $endereco;
+    }
+    protected function findContatoById(){
+        $id_contato = 0;
+        if(isset($_GET['id_contato']))
+            $id_contato = $_GET['id_contato'];
+
+        $dados["id_contato"] = $id_contato;
+
+        $contato = $this->contatoDao->findById($id_contato);
+        return $contato;
     }
 
 }

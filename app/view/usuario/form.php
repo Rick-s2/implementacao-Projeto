@@ -3,6 +3,7 @@
 #Objetivo: interface para listagem dos usuários do sistema
 
 require_once(__DIR__ . "/../include/header.php");
+require_once(__DIR__ . "/../include/menu.php");
 ?>
 
 <h3 class="text-center">
@@ -96,6 +97,9 @@ require_once(__DIR__ . "/../include/header.php");
                         ?>" />
                 </div>-->
 
+                <input type="hidden" id="hddId" name="id" 
+                    value="<?= $dados['id']; ?>" />
+
                 <h2 class="text-center">
                     Dados de endereço do Usuário
                 </h2>
@@ -105,13 +109,17 @@ require_once(__DIR__ . "/../include/header.php");
                         <label for="txtCep">CEP:</label>
                         <input class="form-control" type="text" id="txtCep" name="cep" 
                             maxlength="9" placeholder="Informe o CEP, ex: 00000-000"
-                            value="" />
+                            value="<?php
+                                echo (isset ($dados['endereco'])? $dados['endereco']->getCep(): "");
+                        ?>" />
                     </div>
                     <div class="form-group col-6">
                         <label for="txtLogradouro">Logradouro:</label>
                         <input class="form-control" type="text" id="txtLogradouro" name="logradouro" 
                             maxlength="255" placeholder="Informe o logradouro, ex: Rua, Avenida, etc"
-                            value="" />
+                            value="<?php
+                                echo (isset ($dados['endereco'])? $dados['endereco']->getLogradouro(): "");
+                        ?>" />
                     </div>
                 </div>
                 <div class="row">
@@ -119,13 +127,17 @@ require_once(__DIR__ . "/../include/header.php");
                         <label for="numeroEndereco">Nº:</label>
                         <input class="form-control" type="number" id="numeroEndereco" name="numeroEndereco" 
                             maxlength="5" placeholder="Informe o número"
-                            value="" />
+                            value="<?php
+                                echo (isset ($dados['endereco'])? $dados['endereco']->getNumeroEndereco(): "");
+                        ?>" />
                     </div>
                     <div class="form-group col-6">
                         <label for="txtBairro">Bairro:</label>
                         <input class="form-control" type="text" id="txtBairro" name="bairro" 
                             maxlength="100" placeholder="Informe o Bairro"
-                            value="" />
+                            value="<?php
+                                echo (isset ($dados['endereco'])? $dados['endereco']->getBairro(): "");
+                        ?>" />
                     </div>
                 </div>
                 <div class="row">
@@ -133,15 +145,22 @@ require_once(__DIR__ . "/../include/header.php");
                         <label for="txtCidade">Cidade:</label>
                         <input class="form-control" type="text" id="txtCidade" name="cidade" 
                             maxlength="100" placeholder="Informe a cidade"
-                            value="" />
+                            value="<?php
+                                echo (isset ($dados['endereco'])? $dados['endereco']->getCidade(): "");
+                        ?>" />
                     </div>
                     <div class="form-group col-6">
                         <label for="txtPais">País:</label>
                         <input class="form-control" type="text" id="txtPais" name="pais" 
                             maxlength="45" placeholder="Informe o País"
-                            value="" />
+                            value="<?php
+                                echo (isset ($dados['endereco'])? $dados['endereco']->getPais(): "");
+                        ?>" />
                     </div>
                 </div>
+
+                <input type="hidden" id="hddIdEndereco" name="id_endereco"
+                    value="<?= $dados['id']; ?>" />
 
                 <h2 class="text-center">
                     Dados de contato do Usuário
@@ -152,13 +171,17 @@ require_once(__DIR__ . "/../include/header.php");
                         <label for="txtTelefone">Telefone:</label>
                         <input class="form-control" type="text" id="txtTelefone" name="telefone" 
                             maxlength="10" placeholder="Informe um telefone"
-                            value="" />
+                            value="<?php
+                                echo (isset ($dados['contato'])? $dados['contato']->getTelefone(): "");
+                        ?>" />
                     </div>
                     <div class="form-group col-6">
                         <label for="txtCelular">Celular:</label>
                         <input class="form-control" type="txt" id="txtCelular" name="celular" 
                             maxlength="11" placeholder="Informe um celular"
-                            value="" />
+                            value="<?php
+                                echo (isset ($dados['contato'])? $dados['contato']->getCelular(): "");
+                        ?>" />
                     </div>
                 </div>
                 <div class="row">
@@ -166,11 +189,13 @@ require_once(__DIR__ . "/../include/header.php");
                         <label for="txtEmail">E-mail:</label>
                         <input class="form-control" type="email" id="txtEmail" name="email" 
                             maxlength="100" placeholder="Informe um e-mail"
-                            value="" />
+                            value="<?php
+                                echo (isset ($dados['contato'])? $dados['contato']->getEmail(): "");
+                        ?>" />
                     </div>
                 </div>
 
-                <input type="hidden" id="hddId" name="id" 
+                <input type="hidden" id="hddIdContato" name="id_contato"
                     value="<?= $dados['id']; ?>" />
 
                 <button type="submit" class="btn btn-success">Gravar</button>
