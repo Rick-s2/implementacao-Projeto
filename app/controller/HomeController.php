@@ -12,7 +12,7 @@ class HomeController extends Controller {
     }
 
     protected function home() {
-        $this->loadView("usuario/list.php", []);
+        $this->loadView("home/index.php", []);
     }
 }
 
