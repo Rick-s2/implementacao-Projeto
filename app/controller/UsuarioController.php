@@ -58,29 +58,9 @@ class UsuarioController extends Controller {
     
 
     protected function save() {
-        //Captura os dados do formulário
-        $dados["id"] = isset($_POST['id']) ? $_POST['id'] : 0;
-        $nome = isset($_POST['nome']) ? trim($_POST['nome']) : NULL;
-        $cpf = isset($_POST['cpf']) ? trim($_POST['cpf']) : NULL;
-        $login = isset($_POST['login']) ? trim($_POST['login']) : NULL;
-        $senha = isset($_POST['senha']) ? trim($_POST['senha']) : NULL;
-        $confSenha = isset($_POST['conf_senha']) ? trim($_POST['conf_senha']) : NULL;
-
-        //Captura os papeis do formulário
-        $papeis = array();
-        foreach(UsuarioPapel::getAllAsArray() as $papel) {
-            if(isset($_POST[$papel]))
-                array_push($papeis, $papel);
-        }
-         //Cria objeto Usuario
-         $usuario = new Usuario();
-         $usuario->setNome($nome);
-         $usuario->setCpf($cpf);
-         $usuario->setLogin($login);
-         $usuario->setSenha($senha);
-         $usuario->setPapeisAsArray($papeis);
 
         // Captura dados endereço
+        $dados['id_endereco'] = 0;
         $dados["id_endereco"] = isset($_POST['id_endereco']) ? $_POST['id_endereco'] : 0;
         $cep = isset($_POST['cep']) ? trim($_POST['cep']) : NULL;
         $logradouro = isset($_POST['logradouro']) ? trim($_POST['logradouro']) : NULL;
@@ -98,6 +78,7 @@ class UsuarioController extends Controller {
         $endereco->setPais($pais);
         
         // Captura dados contato
+        $dados['id_contato'] = 0;
         $dados["id_contato"] = isset($_POST['id_contato']) ? $_POST['id_contato'] : 0;
         $telefone = isset($_POST['telefone']) ? trim($_POST['telefone']) : NULL;
         $celular = isset($_POST['celular']) ? trim($_POST['celular']) : NULL;
@@ -107,12 +88,39 @@ class UsuarioController extends Controller {
         $contato->setTelefone($telefone);
         $contato->setCelular($celular);
         $contato->setEmail($email);
-        // Valida dados contato
+
+        //Captura os dados do formulário
+        $dados["id"] = isset($_POST['id']) ? $_POST['id'] : 0;
+        $id_endereco["id_endereco"] = isset($_POST['id_endereco']) ? $_POST['id_endereco'] : 0;
+        $id_contato["id_contato"] = isset($_POST['id_contato']) ? $_POST['id_contato'] : 0;
+        $nome = isset($_POST['nome']) ? trim($_POST['nome']) : NULL;
+        $cpf = isset($_POST['cpf']) ? trim($_POST['cpf']) : NULL;
+        $login = isset($_POST['login']) ? trim($_POST['login']) : NULL;
+        $senha = isset($_POST['senha']) ? trim($_POST['senha']) : NULL;
+        $confSenha = isset($_POST['conf_senha']) ? trim($_POST['conf_senha']) : NULL;
+
+        //Captura os papeis do formulário
+        $papeis = array();
+        foreach(UsuarioPapel::getAllAsArray() as $papel) {
+            if(isset($_POST[$papel]))
+                array_push($papeis, $papel);
+        }
+         //Cria objeto Usuario
+         $usuario = new Usuario();
+         $usuario->setNome($nome);
+         $endereco = new Endereco($id_endereco);
+         $usuario->setIdEndereco($endereco);
+         $contato = new Contato($id_contato);
+         $usuario->setIdContato($contato);
+         $usuario->setCpf($cpf);
+         $usuario->setLogin($login);
+         $usuario->setSenha($senha);
+         $usuario->setPapeisAsArray($papeis);
 
        
 
         //Validar os dados
-        $erros = $this->usuarioService->validarDados($usuario, $endereco, $contato, $confSenha);
+        $erros = $this->usuarioService->validarDados($endereco, $contato, $usuario, $confSenha);
 
         if(empty($erros)) {
             //Persiste o objeto
