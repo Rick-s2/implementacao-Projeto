@@ -39,13 +39,14 @@ class EnderecoDAO{
     private function mapEnderecos($result) {
         $enderecos = array();
         foreach ($result as $reg) {
-            $endereco = new Usuario();
-            $endereco->setId($reg['id_endereco']);
-            $endereco->setNome($reg['nome']);
-            $endereco->setCpf($reg['cpf']);
-            $endereco->setLogin($reg['login']);
-            $endereco->setSenha($reg['senha']);
-            $endereco->setPapeis($reg['papeis']);
+            $endereco = new Endereco();
+            $endereco->setId_endereco($reg['id_endereco']);
+            $endereco->setCep($reg['cep']);
+            $endereco->setLogradouro($reg['logradouro']);
+            $endereco->setNumeroEndereco($reg['numero_endereco']);
+            $endereco->setBairro($reg['bairro']);
+            $endereco->setCidade($reg['cidade']);
+            $endereco->setPais($reg['pais']);
             array_push($enderecos, $endereco);
         }
 
@@ -67,6 +68,7 @@ class EnderecoDAO{
         $stm->bindValue("pais", $endereco->getPais());
 
         $stm->execute();
+
     }
     //Método para atualizar um Endereço
     public function update(Endereco $endereco) {
