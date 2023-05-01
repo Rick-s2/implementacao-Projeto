@@ -68,8 +68,8 @@ class UsuarioDAO {
 
         $sql = "INSERT INTO tb_usuarios (id_endereco, id_contato, nome, cpf, login, senha, papeis)" .
                " VALUES (:id_endereco, :id_contato, :nome, :cpf, :login, :senha, :papeis)";
-        
         $stm = $conn->prepare($sql);
+        
         $stm->bindValue("id_endereco", $usuario->getIdEndereco()->getId_endereco());
         $stm->bindValue("id_contato", $usuario->getIdContato()->getId_contato());
         $stm->bindValue("nome", $usuario->getNome());

@@ -37,6 +37,9 @@ class UsuarioController extends Controller {
 
     protected function create() {
         $dados["id"] = 0;
+        $dados['id_contato'] = 0;
+        $dados['id_endereco'] = 0;
+
         $dados["papeis"] = UsuarioPapel::getAllAsArray();
         $this->loadView("usuario/form.php", $dados);
     }
@@ -60,7 +63,6 @@ class UsuarioController extends Controller {
     protected function save() {
 
         // Captura dados endereço
-        $dados['id_endereco'] = 0;
         $dados["id_endereco"] = isset($_POST['id_endereco']) ? $_POST['id_endereco'] : 0;
         $cep = isset($_POST['cep']) ? trim($_POST['cep']) : NULL;
         $logradouro = isset($_POST['logradouro']) ? trim($_POST['logradouro']) : NULL;
@@ -77,8 +79,8 @@ class UsuarioController extends Controller {
         $endereco->setCidade($cidade);
         $endereco->setPais($pais);
         
+       
         // Captura dados contato
-        $dados['id_contato'] = 0;
         $dados["id_contato"] = isset($_POST['id_contato']) ? $_POST['id_contato'] : 0;
         $telefone = isset($_POST['telefone']) ? trim($_POST['telefone']) : NULL;
         $celular = isset($_POST['celular']) ? trim($_POST['celular']) : NULL;
@@ -89,7 +91,7 @@ class UsuarioController extends Controller {
         $contato->setCelular($celular);
         $contato->setEmail($email);
 
-        //Captura os dados do formulário
+        //Captura os dados do usuário
         $dados["id"] = isset($_POST['id']) ? $_POST['id'] : 0;
         $id_endereco["id_endereco"] = isset($_POST['id_endereco']) ? $_POST['id_endereco'] : 0;
         $id_contato["id_contato"] = isset($_POST['id_contato']) ? $_POST['id_contato'] : 0;
@@ -98,8 +100,7 @@ class UsuarioController extends Controller {
         $login = isset($_POST['login']) ? trim($_POST['login']) : NULL;
         $senha = isset($_POST['senha']) ? trim($_POST['senha']) : NULL;
         $confSenha = isset($_POST['conf_senha']) ? trim($_POST['conf_senha']) : NULL;
-
-        //Captura os papeis do formulário
+        //Captura os papeis do usuário
         $papeis = array();
         foreach(UsuarioPapel::getAllAsArray() as $papel) {
             if(isset($_POST[$papel]))
@@ -108,16 +109,16 @@ class UsuarioController extends Controller {
          //Cria objeto Usuario
          $usuario = new Usuario();
          $usuario->setNome($nome);
-         $endereco = new Endereco($id_endereco);
-         $usuario->setIdEndereco($endereco);
-         $contato = new Contato($id_contato);
-         $usuario->setIdContato($contato);
+         $usuario_Endereco = new Endereco();
+         $usuario->setIdEndereco($usuario_Endereco);
+         $usuario_Contato = new Contato();
+         $usuario->setIdContato($usuario_Contato);
          $usuario->setCpf($cpf);
          $usuario->setLogin($login);
          $usuario->setSenha($senha);
          $usuario->setPapeisAsArray($papeis);
 
-       
+    
 
         //Validar os dados
         $erros = $this->usuarioService->validarDados($endereco, $contato, $usuario, $confSenha);
@@ -126,9 +127,9 @@ class UsuarioController extends Controller {
             //Persiste o objeto
             try {
                 if($dados["id"] == 0){ //Inserindo
-                    $this->usuarioService->insertUsu($usuario);
                     $this->usuarioService->insertEnd($endereco);
                     $this->usuarioService->insertCont($contato);
+                    $this->usuarioService->insertUsu($usuario);
                 }
                 else {//Alterando
                     $usuario->setId($dados["id"]);
@@ -144,7 +145,7 @@ class UsuarioController extends Controller {
                 $this->list("", $msg);
                 exit;
             } catch (PDOException $e) {
-                $erros = "[Erro ao salvar o usuário na base de dados.]";                
+                $erros = ["[Erro ao salvar o usuário na base de dados.]"];
             }
         }
 

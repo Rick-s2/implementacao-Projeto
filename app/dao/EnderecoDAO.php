@@ -55,12 +55,11 @@ class EnderecoDAO{
     //Método para inserir um Endereço
     public function insert(Endereco $endereco) {
         $conn = Connection::getConn();
-
         $sql = "INSERT INTO tb_enderecos (cep, logradouro, numero_endereco, bairro, cidade, pais)" .
                " VALUES (:cep, :logradouro, :numero_endereco, :bairro, :cidade, :pais)";
         
         $stm = $conn->prepare($sql);
-        $stm->bindValue("nome", $endereco->getcep());
+        $stm->bindValue("cep", $endereco->getcep());
         $stm->bindValue("logradouro", $endereco->getLogradouro());
         $stm->bindValue("numero_endereco", $endereco->getNumeroEndereco());
         $stm->bindValue("bairro", $endereco->getBairro());

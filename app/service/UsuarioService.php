@@ -9,7 +9,6 @@ class UsuarioService {
     /* Método para validar os dados do usuário que vem do formulário */
     public function validarDados(Endereco $endereco, Contato $contato,Usuario $usuario,string $confSenha) {
         $erros = array();
-
         //Validar campos vazios
         if(! $usuario->getNome())
             array_push($erros, "O campo [Nome] é obrigatório.");
