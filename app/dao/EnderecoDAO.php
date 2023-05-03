@@ -35,6 +35,25 @@ class EnderecoDAO{
             " - Erro: mais de um endereco encontrado.");
     }
 
+    public function findTheId(Endereco $endereco) {
+        $conn = Connection::getConn();
+
+        $sql = "SELECT * FROM tb_enderecos e" .
+               " WHERE (:cep, :logradouro, :numero_endereco, :bairro, :cidade, :pais)";
+        $stm = $conn->prepare($sql);    
+        $stm->bindValue("cep", $endereco->getcep());
+        $stm->bindValue("logradouro", $endereco->getLogradouro());
+        $stm->bindValue("numero_endereco", $endereco->getNumeroEndereco());
+        $stm->bindValue("bairro", $endereco->getBairro());
+        $stm->bindValue("cidade", $endereco->getCidade());
+        $stm->bindValue("pais", $endereco->getPais());
+        $stm->execute();
+        $result = $stm->fetchAll();
+    
+
+        $this->mapEnderecos($result);
+    }
+
     //Método para converter um registro da base de dados em um objeto Endereco
     private function mapEnderecos($result) {
         $enderecos = array();
