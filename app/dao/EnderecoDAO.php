@@ -34,12 +34,12 @@ class EnderecoDAO{
         die("EnderecoDAO.findById()" . 
             " - Erro: mais de um endereco encontrado.");
     }
-
-    public function findTheId(Endereco $endereco) {
+//todo AHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH 
+  /* public function findTheId(Endereco $endereco) {
         $conn = Connection::getConn();
 
         $sql = "SELECT * FROM tb_enderecos e" .
-               " WHERE (:cep, :logradouro, :numero_endereco, :bairro, :cidade, :pais)";
+               " WHERE ( :cep, :logradouro, :numero_endereco, :bairro, :cidade, :pais)";
         $stm = $conn->prepare($sql);    
         $stm->bindValue("cep", $endereco->getcep());
         $stm->bindValue("logradouro", $endereco->getLogradouro());
@@ -50,9 +50,11 @@ class EnderecoDAO{
         $stm->execute();
         $result = $stm->fetchAll();
     
-
-        $this->mapEnderecos($result);
-    }
+      $comparacao = $this->mapEnderecos($result);
+      if($comparacao == $endereco) {
+        echo "aaaaaaaaaaaaaaaa";
+      }
+    }*/
 
     //Método para converter um registro da base de dados em um objeto Endereco
     private function mapEnderecos($result) {
