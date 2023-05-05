@@ -48,6 +48,15 @@ class UsuarioController extends Controller {
         $usuario = $this->findUsuarioById();
 
         if($usuario){
+            $endereco = $this->enderecoDao->findById($usuario->getIdEndereco());
+            //print_r($endereco);
+            $usuario->setEndereco($endereco);
+            $contato = $this->contatoDao->findById($usuario->getIdContato());
+            //print_r($contato);
+            $usuario->setContato($contato);
+
+
+
             $dados["id"] = $usuario->getId();
             $dados["papeis"] = UsuarioPapel::getAllAsArray();
             $usuario->setSenha("");
@@ -109,17 +118,16 @@ class UsuarioController extends Controller {
          //Cria objeto Usuario
          $usuario = new Usuario();
          $usuario->setNome($nome);
-         $usuario_Endereco = new Endereco();
-         $usuario->setIdEndereco($usuario_Endereco);
-         $usuario_Contato = new Contato();
-         $usuario->setIdContato($usuario_Contato);
+         //$usuario_Endereco = new Endereco();
+         $usuario->setEndereco($endereco);
+         //$usuario_Contato = new Contato();
+         $usuario->setContato($contato);
          $usuario->setCpf($cpf);
          $usuario->setLogin($login);
          $usuario->setSenha($senha);
          $usuario->setPapeisAsArray($papeis);
 
     
-
         //Validar os dados
         $erros = $this->usuarioService->validarDados($endereco, $contato, $usuario, $confSenha);
 
@@ -134,9 +142,9 @@ class UsuarioController extends Controller {
                 else {//Alterando
                     $usuario->setId($dados["id"]);
                     $this->usuarioService->updateUsu($usuario);
-                    $endereco->setId_endereco($dados["id_endereco"]);
+                    //$endereco->setId_endereco($dados["id_endereco"]);
                     $this->usuarioService->updateEnd($endereco);
-                    $contato->setId_contato($dados["id_contato"]);
+                    //$contato->setId_contato($dados["id_contato"]);
                     $this->usuarioService->updateCont($contato);
                 }
 
@@ -177,12 +185,12 @@ class UsuarioController extends Controller {
 
     protected function delete(){
         $usuario = $this->findUsuarioById();
-        $endereco = $this->findEnderecoById();
-        $contato = $this->findContatoById();
-        if($usuario && $endereco && $contato){
+        //$endereco = $this->findEnderecoById();
+        //$contato = $this->findContatoById();
+        if($usuario){
             $this->usuarioDao->deleteById($usuario->getId());
-            $this->enderecoDao->deleteById($endereco->getId_endereco());
-            $this->contatoDao->deleteById($contato->getId_contato());
+            $this->enderecoDao->deleteById($usuario->getIdEndereco());
+            $this->contatoDao->deleteById($usuario->getIdContato());
             $this->list("","Usuário excluído com sucesso.");
         } else {
             $this->list("Usuário não encontrado.");
@@ -197,26 +205,6 @@ class UsuarioController extends Controller {
 
         $usuario = $this->usuarioDao->findById($id);
         return $usuario;
-    }
-    protected function findEnderecoById(){
-        $id_endereco = 0;
-        if(isset($_GET['id_endereco']))
-            $id_endereco = $_GET['id_endereco'];
-
-        $dados["id_endereco"] = $id_endereco;
-
-        $endereco = $this->enderecoDao->findById($id_endereco);
-        return $endereco;
-    }
-    protected function findContatoById(){
-        $id_contato = 0;
-        if(isset($_GET['id_contato']))
-            $id_contato = $_GET['id_contato'];
-
-        $dados["id_contato"] = $id_contato;
-
-        $contato = $this->contatoDao->findById($id_contato);
-        return $contato;
     }
 
 }

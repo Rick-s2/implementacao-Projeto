@@ -64,7 +64,7 @@ class ContatoDAO{
         $stm->bindValue("email", $contato->getEmail());
         $stm->execute();
 
-        return $contato->setId_contato($conn->lastInsertId());
+        $contato->setId_contato($conn->lastInsertId());
         //print_r ($contato);
     }
 

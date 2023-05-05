@@ -7,14 +7,18 @@ require_once(__DIR__ . "/enum/UsuarioPapel.php");
 class Usuario {
 
     private $id;
-    private $idEndereco;
-    private $idContato;
+    private $endereco;
+    private $contato;
     private $nome;
     private $login;
     private $senha;
     private $cpf;
     private $papeis;
     private $status;
+
+    //Campos provisórios
+    private $idEndereco;
+    private $idContato;
 
     /**
      * Get the value of id
@@ -36,26 +40,26 @@ class Usuario {
         return $this;
     }
 
-    public function getIdEndereco()
+    public function getEndereco()
     {
-        return $this->idEndereco;
+        return $this->endereco;
     }
 
-    public function setIdEndereco($idEndereco)
+    public function setEndereco($endereco)
     {
-        $this->idEndereco = $idEndereco;
+        $this->endereco = $endereco;
 
         return $this;
     }
 
-    public function getIdContato()
+    public function getContato()
     {
-        return $this->idContato;
+        return $this->contato;
     }
 
-    public function setIdContato($idContato)
+    public function setContato($contato)
     {
-        $this->idContato = $idContato;
+        $this->contato = $contato;
 
         return $this;
     }
@@ -179,5 +183,45 @@ class Usuario {
     public function getPapeisStr(){
         
             return str_replace(UsuarioPapel::$SEPARADOR,", ", $this->papeis);
+    }
+
+    /**
+     * Get the value of idEndereco
+     */ 
+    public function getIdEndereco()
+    {
+        return $this->idEndereco;
+    }
+
+    /**
+     * Set the value of idEndereco
+     *
+     * @return  self
+     */ 
+    public function setIdEndereco($idEndereco)
+    {
+        $this->idEndereco = $idEndereco;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of idContato
+     */ 
+    public function getIdContato()
+    {
+        return $this->idContato;
+    }
+
+    /**
+     * Set the value of idContato
+     *
+     * @return  self
+     */ 
+    public function setIdContato($idContato)
+    {
+        $this->idContato = $idContato;
+
+        return $this;
     }
 }

@@ -70,14 +70,14 @@ class UsuarioDAO {
                " VALUES (:id_endereco, :id_contato, :nome, :cpf, :login, :senha, :papeis)";
         $stm = $conn->prepare($sql);
         
-        $stm->bindValue("id_endereco", $usuario->getIdEndereco()->getId_endereco());
-        $stm->bindValue("id_contato", $usuario->getIdContato()->getId_contato());
+        $stm->bindValue("id_endereco", $usuario->getEndereco()->getId_endereco());
+        $stm->bindValue("id_contato", $usuario->getContato()->getId_contato());
         $stm->bindValue("nome", $usuario->getNome());
         $stm->bindValue("cpf", $usuario->getCpf());
         $stm->bindValue("login", $usuario->getLogin());
         $stm->bindValue("senha", $usuario->getSenha());
         $stm->bindValue("papeis", $usuario->getPapeis());
-        print_r($usuario);
+        //print_r($usuario);
         $stm->execute();
 
     }
@@ -122,6 +122,11 @@ class UsuarioDAO {
             $usuario->setLogin($reg['login']);
             $usuario->setSenha($reg['senha']);
             $usuario->setPapeis($reg['papeis']);
+
+            //Seta os campos provisórios
+            $usuario->setIdEndereco($reg['id_endereco']);
+            $usuario->setIdContato($reg['id_contato']);
+
             array_push($usuarios, $usuario);
         }
 

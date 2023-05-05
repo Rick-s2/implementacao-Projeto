@@ -110,7 +110,7 @@ require_once(__DIR__ . "/../include/menu.php");
                         <input class="form-control" type="text" id="txtCep" name="cep" 
                             maxlength="9" placeholder="Informe o CEP, ex: 00000-000"
                             value="<?php
-                                echo (isset ($dados['endereco'])? $dados['endereco']->getCep(): "");
+                                echo (isset ($dados['usuario'])? $dados['usuario']->getEndereco()->getCep(): "");
                         ?>" />
                     </div>
                     <div class="form-group col-6">
@@ -118,7 +118,7 @@ require_once(__DIR__ . "/../include/menu.php");
                         <input class="form-control" type="text" id="txtLogradouro" name="logradouro" 
                             maxlength="255" placeholder="Informe o logradouro, ex: Rua, Avenida, etc"
                             value="<?php
-                                echo (isset ($dados['endereco'])? $dados['endereco']->getLogradouro(): "");
+                                echo (isset ($dados['usuario'])? $dados['usuario']->getEndereco()->getLogradouro(): "");
                         ?>" />
                     </div>
                 </div>
@@ -128,7 +128,7 @@ require_once(__DIR__ . "/../include/menu.php");
                         <input class="form-control" type="number" id="numeroEndereco" name="numeroEndereco" 
                             maxlength="5" placeholder="Informe o número"
                             value="<?php
-                                echo (isset ($dados['endereco'])? $dados['endereco']->getNumeroEndereco(): "");
+                                echo (isset ($dados['usuario'])? $dados['usuario']->getEndereco()->getNumeroEndereco(): "");
                         ?>" />
                     </div>
                     <div class="form-group col-6">
@@ -136,7 +136,7 @@ require_once(__DIR__ . "/../include/menu.php");
                         <input class="form-control" type="text" id="txtBairro" name="bairro" 
                             maxlength="100" placeholder="Informe o Bairro"
                             value="<?php
-                                echo (isset ($dados['endereco'])? $dados['endereco']->getBairro(): "");
+                                echo (isset ($dados['usuario'])? $dados['usuario']->getEndereco()->getBairro(): "");
                         ?>" />
                     </div>
                 </div>
@@ -146,7 +146,7 @@ require_once(__DIR__ . "/../include/menu.php");
                         <input class="form-control" type="text" id="txtCidade" name="cidade" 
                             maxlength="100" placeholder="Informe a cidade"
                             value="<?php
-                                echo (isset ($dados['endereco'])? $dados['endereco']->getCidade(): "");
+                                echo (isset ($dados['usuario'])? $dados['usuario']->getEndereco()->getCidade(): "");
                         ?>" />
                     </div>
                     <div class="form-group col-6">
@@ -154,7 +154,7 @@ require_once(__DIR__ . "/../include/menu.php");
                         <input class="form-control" type="text" id="txtPais" name="pais" 
                             maxlength="45" placeholder="Informe o País"
                             value="<?php
-                                echo (isset ($dados['endereco'])? $dados['endereco']->getPais(): "");
+                                echo (isset ($dados['usuario'])? $dados['usuario']->getEndereco()->getPais(): "");
                         ?>" />
                     </div>
                 </div>
@@ -172,7 +172,7 @@ require_once(__DIR__ . "/../include/menu.php");
                         <input class="form-control" type="text" id="txtTelefone" name="telefone" 
                             maxlength="10" placeholder="Informe um telefone"
                             value="<?php
-                                echo (isset ($dados['contato'])? $dados['contato']->getTelefone(): "");
+                                echo (isset ($dados['usuario'])? $dados['usuario']->getContato()->getTelefone(): "");
                         ?>" />
                     </div>
                     <div class="form-group col-6">
@@ -180,7 +180,7 @@ require_once(__DIR__ . "/../include/menu.php");
                         <input class="form-control" type="txt" id="txtCelular" name="celular" 
                             maxlength="11" placeholder="Informe um celular"
                             value="<?php
-                                echo (isset ($dados['contato'])? $dados['contato']->getCelular(): "");
+                               echo (isset ($dados['usuario'])? $dados['usuario']->getContato()->getCelular(): "");
                         ?>" />
                     </div>
                 </div>
@@ -190,7 +190,7 @@ require_once(__DIR__ . "/../include/menu.php");
                         <input class="form-control" type="email" id="txtEmail" name="email" 
                             maxlength="100" placeholder="Informe um e-mail"
                             value="<?php
-                                echo (isset ($dados['contato'])? $dados['contato']->getEmail(): "");
+                                echo (isset ($dados['usuario'])? $dados['usuario']->getContato()->getEmail(): "");
                         ?>" />
                     </div>
                 </div>

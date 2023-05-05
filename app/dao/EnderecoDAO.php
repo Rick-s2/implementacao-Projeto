@@ -68,7 +68,7 @@ class EnderecoDAO{
 
         $stm->execute();
 
-        return $endereco->setId_endereco($conn->lastInsertId());
+        $endereco->setId_endereco($conn->lastInsertId());
 
     }
     //Método para atualizar um Endereço
