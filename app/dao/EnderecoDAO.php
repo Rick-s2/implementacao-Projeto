@@ -65,10 +65,7 @@ class EnderecoDAO{
         $stm->bindValue("bairro", $endereco->getBairro());
         $stm->bindValue("cidade", $endereco->getCidade());
         $stm->bindValue("pais", $endereco->getPais());
-
         $stm->execute();
-
-        $endereco->setId_endereco($conn->lastInsertId());
 
     }
     //Método para atualizar um Endereço
@@ -88,7 +85,6 @@ class EnderecoDAO{
         $stm->bindValue("cidade", $endereco->getCidade());
         $stm->bindValue("pais", $endereco->getPais());
         $stm->bindValue("id_endereco", $endereco->getId_endereco());
-        print_r($endereco);
         $stm->execute();
         
     }

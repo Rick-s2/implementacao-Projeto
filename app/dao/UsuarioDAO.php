@@ -122,6 +122,7 @@ class UsuarioDAO {
             $usuario->setLogin($reg['login']);
             $usuario->setSenha($reg['senha']);
             $usuario->setPapeis($reg['papeis']);
+            $usuario->setStatus($reg['status_usuario']);
 
             //Seta os campos provisórios
             $usuario->setIdEndereco($reg['id_endereco']);
