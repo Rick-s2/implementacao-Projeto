@@ -34,29 +34,7 @@ class EnderecoDAO{
         die("EnderecoDAO.findById()" . 
             " - Erro: mais de um endereco encontrado.");
     }
-//todo AHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH 
-  /* public function findTheId(Endereco $endereco) {
-        $conn = Connection::getConn();
 
-        $sql = "SELECT * FROM tb_enderecos e" .
-               " WHERE ( :cep, :logradouro, :numero_endereco, :bairro, :cidade, :pais)";
-        $stm = $conn->prepare($sql);    
-        $stm->bindValue("cep", $endereco->getcep());
-        $stm->bindValue("logradouro", $endereco->getLogradouro());
-        $stm->bindValue("numero_endereco", $endereco->getNumeroEndereco());
-        $stm->bindValue("bairro", $endereco->getBairro());
-        $stm->bindValue("cidade", $endereco->getCidade());
-        $stm->bindValue("pais", $endereco->getPais());
-        $stm->execute();
-        $result = $stm->fetchAll();
-    
-      $comparacao = $this->mapEnderecos($result);
-      if($comparacao == $endereco) {
-        echo "aaaaaaaaaaaaaaaa";
-      }
-    }*/
-
-    //Método para converter um registro da base de dados em um objeto Endereco
     private function mapEnderecos($result) {
         $enderecos = array();
         foreach ($result as $reg) {
@@ -89,6 +67,8 @@ class EnderecoDAO{
         $stm->bindValue("pais", $endereco->getPais());
 
         $stm->execute();
+
+        return $endereco->setId_endereco($conn->lastInsertId());
 
     }
     //Método para atualizar um Endereço

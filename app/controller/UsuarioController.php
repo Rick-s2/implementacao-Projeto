@@ -79,7 +79,7 @@ class UsuarioController extends Controller {
         $endereco->setCidade($cidade);
         $endereco->setPais($pais);
         
-       
+    
         // Captura dados contato
         $dados["id_contato"] = isset($_POST['id_contato']) ? $_POST['id_contato'] : 0;
         $telefone = isset($_POST['telefone']) ? trim($_POST['telefone']) : NULL;

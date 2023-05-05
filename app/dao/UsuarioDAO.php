@@ -77,7 +77,9 @@ class UsuarioDAO {
         $stm->bindValue("login", $usuario->getLogin());
         $stm->bindValue("senha", $usuario->getSenha());
         $stm->bindValue("papeis", $usuario->getPapeis());
+        print_r($usuario);
         $stm->execute();
+
     }
 
     //Método para atualizar um Usuario
