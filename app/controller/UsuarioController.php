@@ -118,9 +118,9 @@ class UsuarioController extends Controller {
          //Cria objeto Usuario
          $usuario = new Usuario();
          $usuario->setNome($nome);
-         //$usuario_Endereco = new Endereco();
+         //!$usuario_Endereco = new Endereco();
          $usuario->setEndereco($endereco);
-         //$usuario_Contato = new Contato();
+         //!$usuario_Contato = new Contato();
          $usuario->setContato($contato);
          $usuario->setCpf($cpf);
          $usuario->setLogin($login);
@@ -142,9 +142,9 @@ class UsuarioController extends Controller {
                 else {//Alterando
                     $usuario->setId($dados["id"]);
                     $this->usuarioService->updateUsu($usuario);
-                    //$endereco->setId_endereco($dados["id_endereco"]);
+                    //!$endereco->setId_endereco($dados["id_endereco"]);
                     $this->usuarioService->updateEnd($endereco);
-                    //$contato->setId_contato($dados["id_contato"]);
+                    //!$contato->setId_contato($dados["id_contato"]);
                     $this->usuarioService->updateCont($contato);
                 }
 

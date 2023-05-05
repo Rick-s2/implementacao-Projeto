@@ -75,9 +75,10 @@ class EnderecoDAO{
     public function update(Endereco $endereco) {
         $conn = Connection::getConn();
 
-        $sql = "UPDATE tb_enderecos SET cep = :cep, logradouro = :logradouro, numero_endereco," . 
+        $sql = "UPDATE tb_enderecos SET cep = :cep, logradouro = :logradouro, numero_endereco = :numero_endereco," . 
                " bairro = :bairro, cidade = :cidade, pais = :pais" .   
                " WHERE id_endereco = :id_endereco";
+        
         
         $stm = $conn->prepare($sql);
         $stm->bindValue("cep", $endereco->getCep());
@@ -87,7 +88,9 @@ class EnderecoDAO{
         $stm->bindValue("cidade", $endereco->getCidade());
         $stm->bindValue("pais", $endereco->getPais());
         $stm->bindValue("id_endereco", $endereco->getId_endereco());
+        print_r($endereco);
         $stm->execute();
+        
     }
     //Método para excluir um Endereco pelo seu ID
     public function deleteById(int $id) {

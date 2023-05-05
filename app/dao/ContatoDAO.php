@@ -69,6 +69,8 @@ class ContatoDAO{
     }
 
     public function update(Contato $contato) {
+
+        
         $conn = Connection::getConn();
 
         $sql = "UPDATE tb_contatos SET telefone = :telefone, celular = :celular, email = :email" .   
@@ -78,8 +80,10 @@ class ContatoDAO{
         $stm->bindValue("telefone", $contato->getTelefone());
         $stm->bindValue("celular", $contato->getCelular());
         $stm->bindValue("email", $contato->getEmail());
-        $stm->bindValue("id_endereco", $contato->getId_contato());
+        $stm->bindValue("id_contato", $contato->getId_contato());
+        
         $stm->execute();
+print_r($contato);
 
         
     }
