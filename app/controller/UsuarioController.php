@@ -118,9 +118,7 @@ class UsuarioController extends Controller {
          //Cria objeto Usuario
          $usuario = new Usuario();
          $usuario->setNome($nome);
-         //!$usuario_Endereco = new Endereco();
          $usuario->setEndereco($endereco);
-         //!$usuario_Contato = new Contato();
          $usuario->setContato($contato);
          $usuario->setCpf($cpf);
          $usuario->setLogin($login);
@@ -192,6 +190,24 @@ class UsuarioController extends Controller {
             $this->enderecoDao->deleteById($usuario->getIdEndereco());
             $this->contatoDao->deleteById($usuario->getIdContato());
             $this->list("","Usuário excluído com sucesso.");
+        } else {
+            $this->list("Usuário não encontrado.");
+        }
+    }
+    protected function updateToInativo(){
+        $usuario = $this->findUsuarioById();
+        if($usuario){
+            $this->usuarioDao->updateToInativo($usuario->getId());
+            $this->list("","Usuário inativado com sucesso.");
+        } else {
+            $this->list("Usuário não encontrado.");
+        }
+    }
+    protected function updateToAtivo(){
+        $usuario = $this->findUsuarioById();
+        if($usuario){
+            $this->usuarioDao->updateToAtivo($usuario->getId());
+            $this->list("","Usuário ativado com sucesso.");
         } else {
             $this->list("Usuário não encontrado.");
         }

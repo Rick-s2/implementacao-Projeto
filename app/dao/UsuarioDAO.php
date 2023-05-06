@@ -110,6 +110,20 @@ class UsuarioDAO {
         $stm->bindValue("id", $id);
         $stm->execute();
     }
+    public function updateToInativo(){
+        $conn = Connection::getConn();
+        $sql = "UPDATE tb_usuarios SET status_usuario = 'INATIVO' WHERE id_usuario = :id";
+        $stm = $conn->prepare($sql);
+        $stm->bindValue("id", $_GET['id']);
+        $stm->execute();
+    }
+    public function updateToAtivo(){
+        $conn = Connection::getConn();
+        $sql = "UPDATE tb_usuarios SET status_usuario = 'ATIVO' WHERE id_usuario = :id";
+        $stm = $conn->prepare($sql);
+        $stm->bindValue("id", $_GET['id']);
+        $stm->execute();
+    }
 
     //Método para converter um registro da base de dados em um objeto Usuario
     private function mapUsuarios($result) {
