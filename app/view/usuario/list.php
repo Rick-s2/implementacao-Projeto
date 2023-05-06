@@ -42,7 +42,8 @@ require_once(__DIR__ . "/../include/menu.php");
                             <td><?= $usu->getNome(); ?></td>
                             <td><?= $usu->getLogin(); ?></td>
                             <td><?= $usu->getPapeisStr(); ?></td>
-                            <td><?php 
+                            <td><?= $usu->getStatus();?>
+                                <?php 
                                 if ($usu->getStatus() == 'ATIVO') {
                                     echo "<a class='btn btn-outline-danger' onclick=\"return confirm('Deseja alterar o status do usuário para INATIVO?')\" href='". BASEURL ."/controller/UsuarioController.php?action=updateToInativo&id=". $usu->getId() ."'>Inativar</a>";
                                 } else {
