@@ -67,6 +67,8 @@ class EnderecoDAO{
         $stm->bindValue("pais", $endereco->getPais());
         $stm->execute();
 
+        $endereco->setId_endereco($conn->lastInsertId());
+
     }
     //Método para atualizar um Endereço
     public function update(Endereco $endereco) {

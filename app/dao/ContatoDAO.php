@@ -63,6 +63,9 @@ class ContatoDAO{
         $stm->bindValue("celular", $contato->getCelular());
         $stm->bindValue("email", $contato->getEmail());
         $stm->execute();
+
+        $contato->setId_contato($conn->lastInsertId());
+
     }
 
     public function update(Contato $contato) {
