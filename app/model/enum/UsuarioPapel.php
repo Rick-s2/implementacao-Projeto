@@ -8,9 +8,10 @@ class UsuarioPapel {
 
     const USUARIO = "USUARIO";
     const ADMINISTRADOR = "ADMINISTRADOR";
+    const CHEFE = "CHEFE";
 
     public static function getAllAsArray() {
-        return [UsuarioPapel::USUARIO, UsuarioPapel::ADMINISTRADOR];
+        return [UsuarioPapel::USUARIO, UsuarioPapel::ADMINISTRADOR, UsuarioPapel::CHEFE];
     }
 
 }

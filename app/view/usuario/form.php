@@ -88,14 +88,6 @@ require_once(__DIR__ . "/../include/menu.php");
                         <?php endforeach; ?>
 
                 </div>
-                <!-- <div class="form-group" style="width: 50%;"> 
-                    <label for="txtStatus">Status:</label>
-                    <input readonly class="form-control" type="text" id="txtStatus" name="status" 
-                        maxlength="70" placeholder="Informe o status : ativo ou inativo"
-                        value="<?php
-                            //'echo (isset($dados['usuario']) ? $dados['usuario']->getStatus(): "ATIVO");
-                        ?>" />
-                </div>-->
 
                 <input type="hidden" id="hddId" name="id" 
                     value="<?= $dados['id']; ?>" />
