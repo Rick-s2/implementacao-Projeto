@@ -160,7 +160,8 @@ require_once(__DIR__ . "/../include/menu.php");
                 </div>
 
                 <input type="hidden" id="hddIdEndereco" name="id_endereco"
-                    value="<?= $dados['id']; ?>" />
+                    value="<?= $dados['id_endereco']; 
+               ?>" />
 
                 <h2 class="text-center">
                     Dados de contato do Usuário
@@ -196,7 +197,7 @@ require_once(__DIR__ . "/../include/menu.php");
                 </div>
 
                 <input type="hidden" id="hddIdContato" name="id_contato"
-                    value="<?= $dados['id']; ?>" />
+                    value="<?= $dados['id_contato']; ?>" />
 
                 <button type="submit" class="btn btn-success">Gravar</button>
                 <button type="reset" class="btn btn-danger">Limpar</button>

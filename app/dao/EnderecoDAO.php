@@ -23,7 +23,6 @@ class EnderecoDAO{
         $stm = $conn->prepare($sql);    
         $stm->execute([$id]);
         $result = $stm->fetchAll();
-
         $enderecos = $this->mapEnderecos($result);
 
         if(count($enderecos) == 1)

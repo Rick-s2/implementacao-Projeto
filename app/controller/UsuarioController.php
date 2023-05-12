@@ -48,19 +48,18 @@ class UsuarioController extends Controller {
         $usuario = $this->findUsuarioById();
 
         if($usuario){
-            $endereco = $this->enderecoDao->findById($usuario->getIdEndereco());
-            //print_r($endereco);
+            $endereco = $this->enderecoDao->findById($usuario-> getIdEndereco());
             $usuario->setEndereco($endereco);
             $contato = $this->contatoDao->findById($usuario->getIdContato());
-            //print_r($contato);
             $usuario->setContato($contato);
 
-
-
+            $dados["id_endereco"] = $endereco -> getId_endereco();
+            $dados["id_contato"] = $contato -> getId_contato();
             $dados["id"] = $usuario->getId();
             $dados["papeis"] = UsuarioPapel::getAllAsArray();
             $usuario->setSenha("");
             $dados["usuario"] = $usuario;        
+
             $this->loadView("usuario/form.php", $dados);
         } else {
             $this->list("Usuário não encontrado.");
@@ -70,6 +69,7 @@ class UsuarioController extends Controller {
     
 
     protected function save() {
+
 
         // Captura dados endereço
         $dados["id_endereco"] = isset($_POST['id_endereco']) ? $_POST['id_endereco'] : 0;
@@ -87,7 +87,6 @@ class UsuarioController extends Controller {
         $endereco->setBairro($bairro);
         $endereco->setCidade($cidade);
         $endereco->setPais($pais);
-        
     
         // Captura dados contato
         $dados["id_contato"] = isset($_POST['id_contato']) ? $_POST['id_contato'] : 0;
@@ -114,7 +113,7 @@ class UsuarioController extends Controller {
         foreach(UsuarioPapel::getAllAsArray() as $papel) {
             if(isset($_POST[$papel]))
                 array_push($papeis, $papel);
-        }
+        } 
          //Cria objeto Usuario
          $usuario = new Usuario();
          $usuario->setNome($nome);
@@ -125,7 +124,7 @@ class UsuarioController extends Controller {
          $usuario->setSenha($senha);
          $usuario->setPapeisAsArray($papeis);
 
-    
+
         //Validar os dados
         $erros = $this->usuarioService->validarDados($endereco, $contato, $usuario, $confSenha);
 
@@ -140,9 +139,9 @@ class UsuarioController extends Controller {
                 else {//Alterando
                     $usuario->setId($dados["id"]);
                     $this->usuarioService->updateUsu($usuario);
-                    //!$endereco->setId_endereco($dados["id_endereco"]);
+                    $endereco->setId_endereco($dados["id_endereco"]);
                     $this->usuarioService->updateEnd($endereco);
-                    //!$contato->setId_contato($dados["id_contato"]);
+                    $contato->setId_contato($dados["id_contato"]);
                     $this->usuarioService->updateCont($contato);
                 }
 
