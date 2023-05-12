@@ -4,6 +4,8 @@
 
 require_once(__DIR__ . "/../include/header.php");
 require_once(__DIR__ . "/../include/menu.php");
+
+$nome = $_SESSION[SESSAO_USUARIO_NOME];
 ?>
 
 <h3 class="text-center">Usuários</h3>

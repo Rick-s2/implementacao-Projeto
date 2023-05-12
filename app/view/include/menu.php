@@ -5,6 +5,11 @@
 require_once(__DIR__ . "/../../controller/AcessoController.php");
 require_once(__DIR__ . "/../../model/enum/UsuarioPapel.php");
 
+session_status();
+if(session_status() !== PHP_SESSION_ACTIVE) 
+{
+    session_start();
+}
 $nome = "(Sessão expirada)";
 if(isset($_SESSION[SESSAO_USUARIO_NOME]))
     $nome = $_SESSION[SESSAO_USUARIO_NOME];
