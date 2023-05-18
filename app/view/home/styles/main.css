@@ -1,0 +1,127 @@
+body{
+
+    overflow-x: hidden;
+
+}
+
+
+#cabecalho{
+    background-image: url(../images/fundo_plantas.png);
+    background-size: 600px;
+    height:180px;
+    
+   
+}
+#p_titulo{ 
+    color: rgb(63, 245, 72); text-shadow: black  0.1em 0.1em 0.2em;
+}
+
+.menu_oculto{
+    background-color: black;
+    height: 100%;
+    width: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+.menu_oculto a{
+    color: rgb(255, 255, 255); text-shadow: goldenrod  0.1em 0.1em 0.2em;
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    display: block;
+    transition: 0.3s;
+}
+
+.menu_oculto a:hover{color: goldenrod;}
+
+.btn_fechar{
+    right: 25px;
+    position: absolute;
+    padding: 16px;
+    top: 0;
+    margin-left: 50px;
+    font-size: 25px;
+    
+}
+
+#principal{
+    color: rgb(255, 255, 255); text-shadow: black  0.1em 0.1em 0.2em;
+    padding: 16px;
+    transition: margin-left 0.5px;
+}
+
+/*usamos media p paginas responsivas*/
+@media screen and(max-height: 450px){
+    .menu_oculto{padding-top: 15px;}
+    .menu_oculto a{font-size: 18;}
+    }
+
+.botoes_menu{color: rgb(255, 255, 255); text-shadow: black  0.1em 0.1em 0.2em;}
+
+#bloco_titulo{
+    text-align: center;
+    margin-top: 12px;
+    background-image: url(../images/madeira_titulo.png);
+    background: no-repeat center ;
+    height: 150px;
+}
+img{
+
+    margin-top: -50px;
+    height: 230px;
+    width: 430px;
+    object-fit: fill;
+    position: relative;
+
+}
+#p_titulo{
+    margin-top: -115px;
+    margin-left: 225px;
+    font-weight: bold;
+    font-size: 32px;
+    position: absolute;
+}
+
+.cx_meio{
+    height: 520px;
+}
+
+#apresentacao{
+    height: 480px;
+    margin-right: 10px;
+    margin-top: 26px;
+    animation-name: anim_apresentacao;
+    animation-duration: 4s;
+    animation-iteration-count: infinite; 
+}
+
+/*animacao da apresentacao*/
+@keyframes anim_apresentacao{
+0%   {box-shadow: 0 0 15px black;}
+50%  {box-shadow: 0 0 15px goldenrod;}
+100% {box-shadow: 0 0 15px black;}}
+
+
+.linha_nome{
+   height: 20%;
+   font-size: 15px;
+   justify-content: center;
+   
+}
+
+.linha_foto{
+    height: 50%;
+    justify-content: center;
+}
+
+.linha_num{
+    height: 20%;
+    font-size: 15px;
+    justify-content: center;
+}

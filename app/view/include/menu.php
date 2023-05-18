@@ -5,11 +5,11 @@
 require_once(__DIR__ . "/../../controller/AcessoController.php");
 require_once(__DIR__ . "/../../model/enum/UsuarioPapel.php");
 
-session_status();
+/*session_status();
 if(session_status() !== PHP_SESSION_ACTIVE) 
 {
     session_start();
-}
+}*/
 $nome = "(Sessão expirada)";
 if(isset($_SESSION[SESSAO_USUARIO_NOME]))
     $nome = $_SESSION[SESSAO_USUARIO_NOME];
@@ -41,7 +41,13 @@ $isAdministrador = $acessoCont->usuarioPossuiPapel([UsuarioPapel::ADMINISTRADOR]
             </li>
 
             <li class="nav-item active">
-                <a class="nav-link" href="<?= LOGOUT_PAGE ?>">Sair</a>
+                <?php if(session_status() == PHP_SESSION_ACTIVE){ 
+                        echo "<a class='nav-link' href='<?= LOGOUT_PAGE ?>'>Sair</a>";
+                        }
+                    else{
+                        echo "<a class='nav-link' href='<?= LOGIN_PAGE ?>'>Login</a>";
+                        }
+                ?>
             </li>
         </ul>
 
