@@ -42,11 +42,11 @@ $isAdministrador = $acessoCont->usuarioPossuiPapel([UsuarioPapel::ADMINISTRADOR]
             </li>
 
             <li class="nav-item active">
-                <?php if(session_id() === ''){ 
-                        echo "<a class='nav-link' href='<?= LOGIN_PAGE ?>'>Sair</a>";
+                <?php if(session_status() === PHP_SESSION_ACTIVE){ 
+                        echo "<a class='nav-link' href='". LOGOUT_PAGE ."'>Sair</a>";
                         }
                     else{
-                        echo "<a class='nav-link' href='<?= LOGOUT_PAGE ?>'>Login</a>";
+                        echo "<a class='nav-link' href='". LOGIN_PAGE ."'>Login</a>";
                         }
                 ?>
             </li>
