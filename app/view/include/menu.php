@@ -22,7 +22,7 @@ $isAdministrador = $acessoCont->usuarioPossuiPapel([UsuarioPapel::ADMINISTRADOR]
 ?>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
-        <ul class="navbar-nav mr-auto">
+        <!--<ul class="navbar-nav mr-auto">
             <li class="nav-item active">
                 <a class="nav-link" href="<?= HOME_PAGE ?>">Home</a>
             </li>
@@ -36,19 +36,19 @@ $isAdministrador = $acessoCont->usuarioPossuiPapel([UsuarioPapel::ADMINISTRADOR]
                         <a class="dropdown-item" 
                             href="<?= BASEURL . '/controller/UsuarioController.php?action=list' ?>">Usuários</a>
                     <?php endif; ?>
-                    
+            
                     <a class="dropdown-item" href="#">Outro cadastro</a>
                 </div>
-            </li>
-        </ul>
+                    </li>
+        </ul>-->
  
         <ul class="navbar-nav mr-left">
             <li class="nav-item active">
-            <?php if(session_id() === ""){ 
-                        echo "<a class='nav-link' href='". LOGOUT_PAGE ."'>Sair</a>";
+            <?php if($nome !== "(Sessão expirada)"){ 
+                        echo "<a class='nav-link'>". $nome ."</a>";
                         }
                     else{
-                        echo "<a class='nav-link' href='". LOGIN_PAGE ."'>Login</a>";
+                        echo "<a class='nav-link'>Sessão expirada</a>";
                         }
                 ?>
             </li>

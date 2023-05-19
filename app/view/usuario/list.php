@@ -44,6 +44,14 @@ $nome = $_SESSION[SESSAO_USUARIO_NOME];
                                 <td><?= $usu->getLogin(); ?></td>
                                 <td><?= $usu->getPapeisStr(); ?></td>
                                 <td>
+                                    <?php if($usu->getStatus() == 'ATIVO'): ?>
+                                        
+                                    <?php else: ?>
+
+                                    <?php endif; ?>
+
+
+
                                     <?php
                                     if ($usu->getStatus() == 'ATIVO') {
                                         echo "<a class='btn btn-outline-success' onclick=\"return confirm('Deseja alterar o status do usuário para INATIVO?')\" href='". BASEURL ."/controller/UsuarioController.php?action=updateToInativo&id=". $usu->getId() ."'>ATIVO</a>";

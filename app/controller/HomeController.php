@@ -7,7 +7,7 @@ class HomeController extends Controller {
     public function __construct() {
         /*if(! $this->usuarioLogado())
             exit;*/
-
+        $this->setActionDefault('home');
         $this->handleAction();
     }
 

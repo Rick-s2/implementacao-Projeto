@@ -23,6 +23,7 @@ class UsuarioController extends Controller {
         $this->contatoDao = new ContatoDAO();
         $this->usuarioService = new UsuarioService();
 
+        $this->setActionDefault("list");    
         $this->handleAction();
     }
 
@@ -186,8 +187,13 @@ class UsuarioController extends Controller {
         //$contato = $this->findContatoById();
         if($usuario){
             $this->usuarioDao->deleteById($usuario->getId());
-            $this->enderecoDao->deleteById($usuario->getIdEndereco());
-            $this->contatoDao->deleteById($usuario->getIdContato());
+            
+            if($usuario->getIdEndereco())
+                $this->enderecoDao->deleteById($usuario->getIdEndereco());
+            
+            if($usuario->getIdContato())
+                $this->contatoDao->deleteById($usuario->getIdContato());
+
             $this->list("","Usuário excluído com sucesso.");
         } else {
             $this->list("Usuário não encontrado.");

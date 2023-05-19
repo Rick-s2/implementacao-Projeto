@@ -51,9 +51,10 @@ body{
 }
 
 #principal{
-    color: rgb(255, 255, 255); text-shadow: black  0.1em 0.1em 0.2em;
+    color: rgb(255, 255, 255); text-shadow:rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
     padding: 16px;
     transition: margin-left 0.5px;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 }
 
 /*usamos media p paginas responsivas*/
