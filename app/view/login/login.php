@@ -29,7 +29,7 @@ require_once(__DIR__ . "/../include/header.php");
                     </div>
 
                     <button type="submit" class="btn btn-success">Logar</button>
-                    <button class="btn btn-primary" href='<?= HOME_PAGE ?>'>Voltar</button>
+                    <a class="btn btn-primary" href='<?= HOME_PAGE ?>'>Voltar</a>
                 </form>
             </div>
         </div>

@@ -40,9 +40,11 @@ $isAdministrador = $acessoCont->usuarioPossuiPapel([UsuarioPapel::ADMINISTRADOR]
                     <a class="dropdown-item" href="#">Outro cadastro</a>
                 </div>
             </li>
-
+        </ul>
+ 
+        <ul class="navbar-nav mr-left">
             <li class="nav-item active">
-                <?php if(session_status() === PHP_SESSION_ACTIVE){ 
+            <?php if(session_id() === ""){ 
                         echo "<a class='nav-link' href='". LOGOUT_PAGE ."'>Sair</a>";
                         }
                     else{
@@ -50,10 +52,6 @@ $isAdministrador = $acessoCont->usuarioPossuiPapel([UsuarioPapel::ADMINISTRADOR]
                         }
                 ?>
             </li>
-        </ul>
-
-        <ul class="navbar-nav mr-left">
-            <li class="nav-item active"><?= $nome?></li>
         </ul>
     </div>
 </nav>
