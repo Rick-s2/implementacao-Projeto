@@ -27,7 +27,7 @@ class UsuarioController extends Controller {
         $this->handleAction();
      }
 
-    protected function Profile(string $msgErro = "", string $msgSucesso = ""){
+    protected function profile(string $msgErro = "", string $msgSucesso = ""){
 
         $usuario = $this->findUsuarioById();
 
@@ -43,7 +43,6 @@ class UsuarioController extends Controller {
             $dados["papeis"] = UsuarioPapel::getAllAsArray();
             $usuario->setSenha("");
             $dados["usuario"] = $usuario;        
-
             $this->loadView("usuario/profile.php", $dados);
         } else {
             $this->list("Usuário não encontrado.");
@@ -172,6 +171,7 @@ class UsuarioController extends Controller {
 
                 // - Enviar mensagem de sucesso
                 $msg = "Usuário salvo com sucesso.";
+                
                 $this->list("", $msg);
                 exit;
             } catch (PDOException $e) {
