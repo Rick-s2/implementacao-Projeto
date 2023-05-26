@@ -45,7 +45,8 @@ $isAdministrador = $acessoCont->usuarioPossuiPapel([UsuarioPapel::ADMINISTRADOR]
         <ul class="navbar-nav mr-left">
             <li class="nav-item active">
             <?php if($nome !== "(Sessão expirada)"){ 
-                        echo "<a class='nav-link'>". $nome ."</a>";
+                        echo "<a class='nav-link' href='"  . BASEURL .
+                         "/controller/UsuarioController.php?action=profile&id=" .   $_SESSION[SESSAO_USUARIO_ID]  . "' >". $nome ."</a>";
                         }
                     else{
                         echo "<a class='nav-link'>Sessão expirada</a>";

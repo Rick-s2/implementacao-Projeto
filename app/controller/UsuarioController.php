@@ -25,6 +25,30 @@ class UsuarioController extends Controller {
 
         $this->setActionDefault("list");    
         $this->handleAction();
+     }
+
+    protected function Profile(string $msgErro = "", string $msgSucesso = ""){
+
+        $usuario = $this->findUsuarioById();
+
+        if($usuario){
+            $endereco = $this->enderecoDao->findById($usuario-> getIdEndereco());
+            $usuario->setEndereco($endereco);
+            $contato = $this->contatoDao->findById($usuario->getIdContato());
+            $usuario->setContato($contato);
+
+            $dados["id_endereco"] = $endereco -> getId_endereco();
+            $dados["id_contato"] = $contato -> getId_contato();
+            $dados["id"] = $usuario->getId();
+            $dados["papeis"] = UsuarioPapel::getAllAsArray();
+            $usuario->setSenha("");
+            $dados["usuario"] = $usuario;        
+
+            $this->loadView("usuario/profile.php", $dados);
+        } else {
+            $this->list("Usuário não encontrado.");
+        }
+
     }
 
     /* Método para chamar a view com a listagem dos Usuarios */
@@ -228,6 +252,7 @@ class UsuarioController extends Controller {
         return $usuario;
     }
 
+   
 }
 
 #Criar objeto da classe
