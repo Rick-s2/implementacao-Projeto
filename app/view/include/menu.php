@@ -33,6 +33,10 @@ $isAdministrador = $acessoCont->usuarioPossuiPapel([UsuarioPapel::ADMINISTRADOR]
                             echo "<a href = " .LOGOUT_PAGE."> Sair</a>";
                         }
                     ?>
+                    <?php if($isAdministrador) { 
+                            echo "<a href = " .BASEURL. "/controller/UsuarioController.php?action=list> Cadastro</a>";
+                        }
+                    ?>
                     <a href = "#"> Sobre</a>
                     <a href = "#" input="checkbox" id="">Modo Escuro</a>
                 </aside>
