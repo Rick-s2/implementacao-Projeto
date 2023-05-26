@@ -20,38 +20,40 @@ $acessoCont = new AcessoController();
 $isAdministrador = $acessoCont->usuarioPossuiPapel([UsuarioPapel::ADMINISTRADOR]);
 
 ?>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
-        <!--<ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="<?= HOME_PAGE ?>">Home</a>
-            </li>
-
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
-                role="button" data-toggle="dropdown" aria-haspopup="true" 
-                aria-expanded="false"> Cadastros </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <?php if($isAdministrador): ?>
-                        <a class="dropdown-item" 
-                            href="<?= BASEURL . '/controller/UsuarioController.php?action=list' ?>">Usuários</a>
-                    <?php endif; ?>
-            
-                    <a class="dropdown-item" href="#">Outro cadastro</a>
-                </div>
-                    </li>
-        </ul>-->
- 
-        <ul class="navbar-nav mr-left">
-            <li class="nav-item active">
-            <?php if($nome !== "(Sessão expirada)"){ 
-                        echo "<a class='nav-link'>". $nome ."</a>";
+    <div class= "row " id = "cabecalho">
+        <div class ="col-3 ">
+        
+                <aside id ="menu_oculto" class ="menu_oculto">
+                    <a href = "javascript:void(0)" class = "btn_fechar" onclick ="fechar_nav()">&times;</a>
+                    <?php echo "<a href = ". HOME_PAGE ."> Home</a>";?>
+                    <?php if($nome !== "(Sessão expirada)"){ 
+                    echo "<a class='nav-link' href='". LOGOUT_PAGE ."'>Sair</a>";
                         }
                     else{
-                        echo "<a class='nav-link'>Sessão expirada</a>";
+                        echo "<a class='nav-link' href='". LOGIN_PAGE ."'>Login</a>";
                         }
-                ?>
-            </li>
-        </ul>
+                    ?>
+                    <?php if($isAdministrador): ?>
+                        <a href="<?= BASEURL . '/controller/UsuarioController.php?action=list' ?>">Usuários</a>
+                    <?php endif; ?>
+                    <a href = "#"> Sobre</a>
+                    <a href = "#" input="checkbox" id="">Modo Escuro</a>
+                </aside>
+
+                <section id="principal">
+                    <span style="font-size:30px;cursor:pointer " onclick = "abrir_nav()">&#9776;</span>
+                    <p></p>
+                </section>
+
+                <script type="text/javascript" src="../view/home/scripts/main.js"></script>
+        </div>
+
+            <div class ="col-6" id = "bloco_titulo">
+                <img src="../view/home/images/madeira_titulo.png">
+                <p id="p_titulo">Escoteiros Guairacá </p></div>
+            <div class ="col-3 "></div>
+
     </div>
-</nav>
+    <div class="nomeUsu">
+        <p><?php echo $nome; ?></p>
+    </div>
