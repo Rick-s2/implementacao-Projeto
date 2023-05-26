@@ -20,22 +20,19 @@ $acessoCont = new AcessoController();
 $isAdministrador = $acessoCont->usuarioPossuiPapel([UsuarioPapel::ADMINISTRADOR]);
 
 ?>
-    <div class= "row " id = "cabecalho">
+<div class= "row " id = "cabecalho">
         <div class ="col-3 ">
         
                 <aside id ="menu_oculto" class ="menu_oculto">
                     <a href = "javascript:void(0)" class = "btn_fechar" onclick ="fechar_nav()">&times;</a>
-                    <?php echo "<a href = ". HOME_PAGE ."> Home</a>";?>
-                    <?php if($nome !== "(Sessão expirada)"){ 
-                    echo "<a class='nav-link' href='". LOGOUT_PAGE ."'>Sair</a>";
+                    <?php echo"<a href = " .HOME_PAGE. "> Home</a>"; ?>
+                    <?php if($nome === "(Sessão expirada)") { 
+                            echo "<a href = " .LOGIN_PAGE."> Login</a>";
                         }
-                    else{
-                        echo "<a class='nav-link' href='". LOGIN_PAGE ."'>Login</a>";
+                        else {
+                            echo "<a href = " .LOGOUT_PAGE."> Sair</a>";
                         }
                     ?>
-                    <?php if($isAdministrador): ?>
-                        <a href="<?= BASEURL . '/controller/UsuarioController.php?action=list' ?>">Usuários</a>
-                    <?php endif; ?>
                     <a href = "#"> Sobre</a>
                     <a href = "#" input="checkbox" id="">Modo Escuro</a>
                 </aside>
@@ -45,15 +42,16 @@ $isAdministrador = $acessoCont->usuarioPossuiPapel([UsuarioPapel::ADMINISTRADOR]
                     <p></p>
                 </section>
 
-                <script type="text/javascript" src="../view/home/scripts/main.js"></script>
+                <script type="text/javascript" src="../view/home/scripts/scripts.js"></script>
         </div>
 
             <div class ="col-6" id = "bloco_titulo">
                 <img src="../view/home/images/madeira_titulo.png">
-                <p id="p_titulo">Escoteiros Guairacá </p></div>
+                <p id="p_titulo">Escoteiros Guairacá </p>
+            </div>
             <div class ="col-3 "></div>
 
     </div>
     <div class="nomeUsu">
-        <p><?php echo $nome; ?></p>
+        <a href=<?php BASEURL. "controller/UsuarioController.php?action=profile"?>><?php echo $nome; ?></a>
     </div>

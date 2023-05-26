@@ -121,7 +121,10 @@ img{
     right: 5vw;
 }
 
-
+.nomeUsu a{
+    color: rgb(0, 0, 0); text-shadow:rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    text-decoration: none;
+}
 
 
 .linha_nome{
