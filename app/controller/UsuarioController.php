@@ -25,7 +25,7 @@ class UsuarioController extends Controller {
 
         $this->setActionDefault("list");    
         $this->handleAction();
-     }
+    }
 
     protected function profile(string $msgErro = "", string $msgSucesso = ""){
 

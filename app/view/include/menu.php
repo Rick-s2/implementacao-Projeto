@@ -15,6 +15,7 @@ $nome = "(Sessão expirada)";
 if(isset($_SESSION[SESSAO_USUARIO_NOME]))
     $nome = $_SESSION[SESSAO_USUARIO_NOME];
 
+
 //Variável para validar o acesso
 $acessoCont = new AcessoController();
 $isAdministrador = $acessoCont->usuarioPossuiPapel([UsuarioPapel::ADMINISTRADOR]);
@@ -57,5 +58,14 @@ $isAdministrador = $acessoCont->usuarioPossuiPapel([UsuarioPapel::ADMINISTRADOR]
 
     </div>
     <div class="nomeUsu">
-        <a href=<?php BASEURL. "controller/UsuarioController.php?action=profile"?>><?php echo $nome; ?></a>
-    </div>
+    <?php
+        if (isset($_SESSION[SESSAO_USUARIO_ID])){
+            echo "<a href='". BASEURL ."/controller/UsuarioController.php?action=profile&id=". 
+            $_SESSION[SESSAO_USUARIO_ID] ."'>". $nome ."</a>";
+        }
+        else {
+            echo $nome;
+        }
+    ?>
+</div>
+
