@@ -18,50 +18,11 @@ if(isset($_SESSION[SESSAO_USUARIO_NOME]))
 
 ?>
     <?php require_once(__DIR__ . "/../include/menu.php");?>
-    <div class="container p-2 border cx_meio">
+    <div class="container p-2 cx_meio">
         <div class= "row" id = "apresentacao">
-            <div class ="col-12 border "></div>
+            <div class ="col-12 "></div>
         </div>
     </div>
-
-
-    <div class="container-fluid border">
-        <div class ="col-12 border"id="rodape_invisivel">
-            <div class= "row border" id = "rodape">
-                        
-                        
-
-                <div class ="col-3 border">
-                    <div class= "row border linha_nome">Nome</div>
-                    <div class= "row border linha_foto">imagem</div>
-                    <div class= "row border linha_num" >Numero</div>
-                </div>
-
-                <div class ="col-3 border">
-                    <div class= "row border linha_nome">Nome</div>
-                    <div class= "row border linha_foto">imagem</div>
-                    <div class= "row border linha_num" >Numero</div>
-                </div>
-
-
-                <div class ="col-3 border">
-                        <div class= "row border linha_nome">Nome</div>
-                        <div class= "row border linha_foto">imagem</div>
-                        <div class= "row border linha_num">Numero</div>
-                 </div>
-
-
-                <div class ="col-3 border">
-                        <div class= "row border linha_nome">Nome</div>
-                        <div class= "row border linha_foto">imagem</div>
-                        <div class= "row border linha_num">Numero</div>
-                </div>
-
-    </div> 
-        </div> 
-            </div>
-                       
-
 </div>
 
 <?php  

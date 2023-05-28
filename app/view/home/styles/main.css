@@ -108,9 +108,9 @@ img{
 
 /*animacao da apresentacao*/
 @keyframes anim_apresentacao{
-0%   {box-shadow: 0 0 15px black;}
-50%  {box-shadow: 0 0 15px goldenrod;}
-100% {box-shadow: 0 0 15px black;}
+0%   {box-shadow: 0 0 5px black;}
+50%  {box-shadow: 0 0 5px goldenrod;}
+100% {box-shadow: 0 0 5px black;}
 }
 
 .nomeUsu{

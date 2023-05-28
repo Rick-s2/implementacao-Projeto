@@ -1,10 +1,37 @@
 <!-- Footer -->
 <footer class="text-center text-lg-start bg-light text-muted" style="margin-top: 10px;">
     <!-- Copyright -->
-    <div class="text-center p-4">
-        © 2023 Copyright:
-        <a class="text-reset fw-bold" href="https://foz.ifpr.edu.br" target="blank">IFPR (Campus Foz do Iguaçu)</a>
-    </div>      
+    <div class="container-fluid ">
+        <div class ="col-12 "id="rodape_invisivel">
+            <div class= "row " id = "rodape">
+                <div class ="col-3 ">
+                    <div class= "row linha_nome">Nome</div>
+                    <div class= "row linha_foto">imagem</div>
+                    <div class= "row linha_num" >Numero</div>
+                </div>
+
+                <div class ="col-3">
+                    <div class= "row linha_nome">Nome</div>
+                    <div class= "row linha_foto">imagem</div>
+                    <div class= "row linha_num" >Numero</div>
+                </div>
+
+
+                <div class ="col-3">
+                        <div class= "row linha_nome">Nome</div>
+                        <div class= "row linha_foto">imagem</div>
+                        <div class= "row linha_num">Numero</div>
+                 </div>
+
+
+                <div class ="col-3">
+                        <div class= "row linha_nome">Nome</div>
+                        <div class= "row linha_foto">imagem</div>
+                        <div class= "row linha_num">Numero</div>
+                </div>
+            </div> 
+        </div> 
+    </div>     
 </footer>
 
 <!-- BOOTSTRAP: scripts requeridos pelo framework -->

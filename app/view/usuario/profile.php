@@ -109,3 +109,6 @@ require_once(__DIR__ . "/../../model/enum/UsuarioPapel.php");
         </div>
     </div>
 </div>
+<?php  
+require_once(__DIR__ . "/../include/footer.php");
+?>
