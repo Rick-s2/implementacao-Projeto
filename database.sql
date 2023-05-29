@@ -16,11 +16,17 @@ CREATE TABLE tb_contatos (
   email VARCHAR(100),
   PRIMARY KEY (id_contato)
 );
+CREATE TABLE tb_alcateias (
+  id_alcateia int AUTO_INCREMENT,
+  nome VARCHAR(100) NOT NULL,
+  PRIMARY KEY (id_alcateia)
+);
 
 CREATE TABLE tb_usuarios ( 
   id_usuario int AUTO_INCREMENT, 
   id_endereco int,
   id_contato int,
+  id_alcateia int,
   nome varchar(70) NOT NULL, 
   cpf char(11) NOT NULL,
   login varchar(15) NOT NULL,
@@ -30,6 +36,7 @@ CREATE TABLE tb_usuarios (
   PRIMARY KEY (id_usuario),
   FOREIGN KEY (id_endereco) REFERENCES tb_enderecos (id_endereco),
   FOREIGN KEY (id_contato) REFERENCES tb_contatos (id_contato),
+  FOREIGN KEY (id_alcateia) REFERENCES tb_alcateias (id_alcateia),
   CONSTRAINT uk_usuarios UNIQUE (login)
 );
 
