@@ -36,6 +36,7 @@ $isAdministrador = $acessoCont->usuarioPossuiPapel([UsuarioPapel::ADMINISTRADOR]
                     ?>
                     <?php if($isAdministrador) { 
                             echo "<a href = " .BASEURL. "/controller/UsuarioController.php?action=list> Cadastro</a>";
+                            echo "<a href = " .BASEURL. "/controller/AlcateiaController.php?action=list> Alcateias</a>";
                         }
                     ?>
                     <a href = "#"> Sobre</a>

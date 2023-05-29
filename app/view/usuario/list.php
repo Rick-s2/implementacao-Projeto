@@ -74,7 +74,7 @@ $nome = $_SESSION[SESSAO_USUARIO_NOME];
                 </table>
             </div>
         </div>
-    </div>"
+    </div>
 
 
 <?php  

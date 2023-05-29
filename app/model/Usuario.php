@@ -9,6 +9,7 @@ class Usuario {
     private $id;
     private $endereco;
     private $contato;
+    private $alcateia;
     private $nome;
     private $login;
     private $senha;
@@ -19,6 +20,7 @@ class Usuario {
     //Campos provisórios
     private $idEndereco;
     private $idContato;
+    private $idAlcateia;
 
     /**
      * Get the value of id
@@ -60,6 +62,18 @@ class Usuario {
     public function setContato($contato)
     {
         $this->contato = $contato;
+
+        return $this;
+    }
+
+    public function getAlcateia()
+    {
+        return $this->alcateia;
+    }
+
+    public function setAlcateia($alcateia)
+    {
+        $this->alcateia = $alcateia;
 
         return $this;
     }
@@ -221,6 +235,26 @@ class Usuario {
     public function setIdContato($idContato)
     {
         $this->idContato = $idContato;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of idAlcateia
+     */ 
+    public function getIdAlcateia()
+    {
+        return $this->idAlcateia;
+    }
+
+    /**
+     * Set the value of idAlcateia
+     *
+     * @return  self
+     */ 
+    public function setIdAlcateia($idAlcateia)
+    {
+        $this->idAlcateia = $idAlcateia;
 
         return $this;
     }
