@@ -4,8 +4,13 @@
 ?>
 
 <div class="container">
-    <div class="col-9">
-        <?php require_once(__DIR__ . "/../include/msg.php"); ?>
+    <div class="row">
+        <div class="col-3">
+            <a class="btn btn-success" href="<?= BASEURL ?>/controller/AlcateiaController.php?action=create">Inserir</a>
+        </div>
+        <div class="col-9">
+            <?php require_once(__DIR__ . "/../include/msg.php"); ?>
+        </div>
     </div>
 
     <div class="row" style="margin-top: 10px;">
