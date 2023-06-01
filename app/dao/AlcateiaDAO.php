@@ -59,4 +59,26 @@ class AlcateiaDao{
         $stm->bindValue(':nome', $alcateia->getNome());
         $stm->execute();
     }
+
+    public function update(Alcateia $alcateia) {
+        $conn = Connection::getConn();
+
+        $sql = "UPDATE tb_alcateias SET nome = :nome" . 
+               " WHERE id_alcateia = :id";
+           
+        $stm = $conn->prepare($sql);
+        $stm->bindValue("nome", $alcateia->getNome());
+        $stm->bindValue("id", $alcateia->getId_alcateia());
+        $stm->execute();
+    }
+    
+    public function deleteById(int $id) {
+        $conn = Connection::getConn();
+
+        $sql = "DELETE FROM tb_alcateias WHERE id_alcateia = :id";
+        
+        $stm = $conn->prepare($sql);
+        $stm->bindValue("id", $id);
+        $stm->execute();
+    }
 }

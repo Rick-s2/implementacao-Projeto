@@ -25,7 +25,7 @@
                             echo (isset($dados['alcateia']) ? $dados['alcateia']->getNome(): "");
                         ?>" />
                 </div>
-                <input type="hidden" id="hddId" name="id" value="<?= $dados['id_alcateia']; ?>" />
+                <input type="hidden" id="hddId" name="id_alcateia" value="<?= $dados['id_alcateia']; ?>" />
                 
                 <button type="submit" class="btn btn-success">Gravar</button>
                 <button type="reset" class="btn btn-danger">Limpar</button>
