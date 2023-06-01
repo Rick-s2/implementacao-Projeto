@@ -24,4 +24,4 @@ class AlcateiaController extends Controller{
         $dados["id_alcateia"] = "";
         $this->loadView("usuario/formAlcateia.php", $dados);
     }
-}
+} $alcCont = new AlcateiaController();
