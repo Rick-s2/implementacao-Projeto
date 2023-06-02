@@ -40,6 +40,15 @@ CREATE TABLE tb_usuarios (
   CONSTRAINT uk_usuarios UNIQUE (login)
 );
 
+CREATE TABLE tb_encontros(
+  id_encontro int AUTO_INCREMENT,
+  id_alcateia int,
+  data DATE NOT NULL,
+  descricao TEXT(255) NOT NULL,
+  PRIMARY KEY (id_encontro),
+  FOREIGN KEY (id_alcateia) REFERENCES tb_alcateias (id_alcateia)
+);
+
 /*Inserts alcateias*/
 INSERT INTO tb_alcateias (nome) VALUES ('Alcateia 1');
 INSERT INTO tb_alcateias (nome) VALUES ('Alcateia 2');
@@ -56,4 +65,8 @@ INSERT INTO tb_contatos (telefone, celular, email) VALUES ('22222222', '22222222
 /*Inserts usuarios*/
 INSERT INTO tb_usuarios (id_endereco, id_contato, id_alcateia, nome, cpf, login, senha, papeis, status_usuario) VALUES (1, 1, 1, 'Sr. Administrador', '11122233344', 'admin', 'admin', 'ADMINISTRADOR', 'ATIVO');
 INSERT INTO tb_usuarios (id_endereco, id_contato, id_alcateia, nome, cpf, login, senha, papeis, status_usuario) VALUES (1, 1, 1, 'Sr. Root', '44433322211', 'root', 'root', 'USUARIO', 'ATIVO');
+
+/*Inserts encontros*/
+INSERT INTO tb_encontros (id_alcateia, data, descricao) VALUES (1, '2020-01-01', 'Encontro 1');
+INSERT INTO tb_encontros (id_alcateia, data, descricao) VALUES (2, '2020-01-01', 'Encontro 2');
 
