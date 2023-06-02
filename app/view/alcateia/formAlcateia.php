@@ -1,6 +1,7 @@
 <?php
     require_once(__DIR__ . "/../include/header.php");
     require_once(__DIR__ . "/../include/menu.php");
+    
 ?>
 
 <div class="container">
@@ -25,6 +26,7 @@
                             echo (isset($dados['alcateia']) ? $dados['alcateia']->getNome(): "");
                         ?>" />
                 </div>
+                
                 <input type="hidden" id="hddId" name="id_alcateia" value="<?= $dados['id_alcateia']; ?>" />
                 
                 <button type="submit" class="btn btn-success">Gravar</button>

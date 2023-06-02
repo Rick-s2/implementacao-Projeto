@@ -3,9 +3,8 @@
 require_once(__DIR__ . "/Controller.php");
 require_once(__DIR__ . "/../dao/EncontroDAO.php");
 require_once(__DIR__ . "/../model/Encontro.php");
+require_once(__DIR__ . "/../model/Alcateia.php");
 require_once(__DIR__ . "/../service/EncontroService.php");
-
-require_once(__DIR__ . "/AlcateiaController.php");
 
 class EncontroController extends Controller {
 
@@ -56,19 +55,17 @@ class EncontroController extends Controller {
     }
 
     public function save(){
-        
-       
-       
        
         $dados["id_encontro"] = isset($_POST['id_encontro']) ? $_POST['id_encontro'] : 0;
         $dataEncontro = isset($_POST['dataEncontro']) ? trim($_POST['dataEncontro']) : NULL;
         $descricaoEncontro = isset($_POST['descricaoEncontro']) ? trim($_POST['descricaoEncontro']) : NULL;
-        $AlcateiaEncontro = isset($_POST['idAlcateiaEncontro']) ? trim($_POST['idAlcateiaEncontro']) : NULL;
+        $id_alcateia = isset($_POST['alcateiaEncontro']) ? trim($_POST['alcateiaEncontro']) : NULL;
 
         $encontro = new encontro();
         $encontro->setData($dataEncontro);
         $encontro->setDescricao($descricaoEncontro);
-        $encontro->setId_alcateia($Encontro);
+        $alcateia = new Alcateia($id_alcateia);
+        $encontro->setAlcateia($alcateia);
 
 
         $erros = $this->encontroService->validarDados($encontro);
@@ -99,11 +96,11 @@ class EncontroController extends Controller {
        
         $dados["dataEncontro"] = $dataEncontro;
         $dados["descricaoEncontro"] = $descricaoEncontro;
-        $dados["alcateiaEncontro"] = $alcateiaEncontro;
+        $dados["id_alcateia"] = $id_alcateia;
 
 
         $msgsErro = implode("<br>", $erros);
-        $this->loadView("encontro/formencontro.php", $dados, $msgsErro);
+        $this->loadView("encontro/formEncontro.php", $dados, $msgsErro);
  
     }
 }

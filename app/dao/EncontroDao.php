@@ -9,7 +9,7 @@ class EncontroDao {
 
         $conn = Connection::getConn();
 
-        $sql = "SELECT * FROM tb_encontros a ORDER BY a.data";
+        $sql = "SELECT * FROM tb_encontros e ORDER BY e.data";
         $stm = $conn->prepare($sql);    
         $stm->execute();
         $result = $stm->fetchAll();
@@ -20,8 +20,8 @@ class EncontroDao {
     public function findById(int $id){
         $conn = Connection::getConn();
 
-        $sql = "SELECT * FROM tb_encontros a" .
-               " WHERE a.id_encontro = ?";
+        $sql = "SELECT * FROM tb_encontros e" .
+               " WHERE e.id_encontro = ?";
         $stm = $conn->prepare($sql);    
         $stm->execute([$id]);
         $result = $stm->fetchAll();
@@ -34,7 +34,7 @@ class EncontroDao {
             return null;
 
         die("encontroDAO.findById()" . 
-            " - Erro: mais de uma encontro encontrada.");
+            " - Erro: mais de uma encontro encontrado.");
     }
 
     public function mapEncontro($result){
@@ -51,38 +51,32 @@ class EncontroDao {
         return $encontros;
     }
 
-    /*
+    
     public function insert(encontro $encontro){
         $conn = Connection::getConn();
 
-        $sql = "INSERT INTO tb_encontros (nome)" .
-               " VALUES (:nome)";
+        $sql = "INSERT INTO tb_encontros (id_alcateia, data, descricao)" .
+               " VALUES (:id_alcateia, :data, :descricao)";
         
         $stm = $conn->prepare($sql);
-        $stm->bindValue(':nome', $encontro->getNome());
+        $stm->bindValue(':id_alcateia', $encontro->getAlcateia()->getId_alcateia());
+        $stm->bindValue(':data', $encontro->getData());
+        $stm->bindValue(':descricao', $encontro->getDescricao());
         $stm->execute();
     }
 
     public function update(encontro $encontro) {
         $conn = Connection::getConn();
 
-        $sql = "UPDATE tb_encontros SET nome = :nome" . 
+        $sql = "UPDATE tb_encontros SET id_alcateia = :id_alcateia , data = :data , descricao = :descricao" . 
                " WHERE id_encontro = :id";
            
         $stm = $conn->prepare($sql);
-        $stm->bindValue("nome", $encontro->getNome());
+        $stm->bindValue("id_alcateia", $encontro->getAlcateia()->getId_alcateia());
+        $stm->bindValue("data", $encontro->getData());
+        $stm->bindValue("descricao", $encontro->getDescricao());
         $stm->bindValue("id", $encontro->getId_encontro());
         $stm->execute();
     }
     
-    public function deleteById(int $id) {
-        $conn = Connection::getConn();
-
-        $sql = "DELETE FROM tb_encontros WHERE id_encontro = :id";
-        
-        $stm = $conn->prepare($sql);
-        $stm->bindValue("id", $id);
-        $stm->execute();
-    }
-    */
 }
