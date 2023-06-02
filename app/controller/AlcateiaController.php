@@ -11,6 +11,7 @@ class AlcateiaController extends Controller{
     private AlcateiaService $alcateiaService;
 
     public function __construct(){
+
         $this->alcateiaDao = new AlcateiaDAO();
         $this->alcateiaService = new AlcateiaService();
         $this->setActionDefault("list");
@@ -24,7 +25,7 @@ class AlcateiaController extends Controller{
     }
 
     public function create(){
-        $dados["id_alcateia"] = "";
+        $dados["id_alcateia"] = 0;
         $this->loadView("alcateia/formAlcateia.php", $dados);
     }
     
@@ -65,8 +66,10 @@ class AlcateiaController extends Controller{
         if(empty($erros)) {
             //Persiste o objeto
             try {
+                
                 if($dados["id_alcateia"] == 0){ //Inserindo
                     $this->alcateiaService->insert($alcateia);
+
                 }
                 else {//Alterando
 
@@ -80,7 +83,7 @@ class AlcateiaController extends Controller{
                 $this->list("", $msg);
                 exit;
             } catch (PDOException $e) {
-                $erros = ["[Erro ao salvar o usuário na base de dados.]"];
+                $erros = ["[Erro ao salvar a alcateia na base de dados.]"];
             }
         }
        
@@ -96,9 +99,9 @@ class AlcateiaController extends Controller{
              if($alcateia){
             $this->alcateiaDao->deleteById($alcateia->getId_alcateia());
             
-            $this->list("","Usuário excluído com sucesso.");
+            $this->list("","Alcateia excluída com sucesso.");
         } else {
-            $this->list("Usuário não encontrado.");
+            $this->list("Alcateia não encontrada.");
         }
     }
 } 
