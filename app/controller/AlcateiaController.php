@@ -101,4 +101,6 @@ class AlcateiaController extends Controller{
             $this->list("Usuário não encontrado.");
         }
     }
-} $alcCont = new AlcateiaController();
+} 
+
+$alcCont = new AlcateiaController();
