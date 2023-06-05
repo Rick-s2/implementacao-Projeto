@@ -64,7 +64,8 @@ class EncontroController extends Controller {
         $encontro = new encontro();
         $encontro->setData($dataEncontro);
         $encontro->setDescricao($descricaoEncontro);
-        $alcateia = new Alcateia($id_alcateia);
+        $alcateia = new Alcateia();
+        $alcateia -> setId_alcateia($id_alcateia);
         $encontro->setAlcateia($alcateia);
 
 
