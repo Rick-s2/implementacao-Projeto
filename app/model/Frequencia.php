@@ -3,7 +3,8 @@
 class Frequencia {
     
     private $id_frequencia; 
-     
+    private $frequencia;
+    
     private $usuario; 
     private $id_usuario;
 
@@ -107,6 +108,26 @@ class Frequencia {
     public function setId_encontro($id_encontro)
     {
         $this->id_encontro = $id_encontro;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of frequencia
+     */ 
+    public function getFrequencia()
+    {
+        return $this->frequencia;
+    }
+
+    /**
+     * Set the value of frequencia
+     *
+     * @return  self
+     */ 
+    public function setFrequencia($frequencia)
+    {
+        $this->frequencia = $frequencia;
 
         return $this;
     }
