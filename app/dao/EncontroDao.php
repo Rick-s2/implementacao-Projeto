@@ -44,6 +44,8 @@ class EncontroDao {
             $encontro->setId_encontro($reg['id_encontro']);
             $encontro->setData($reg['data']);
             $encontro->setDescricao($reg['descricao']);
+            $encontro->setId_alcateia($reg['id_alcateia']);
+
 
             array_push($encontros, $encontro);
         }

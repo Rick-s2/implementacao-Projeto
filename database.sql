@@ -11,7 +11,7 @@ CREATE TABLE tb_enderecos (
 
 CREATE TABLE tb_contatos (
   id_contato int AUTO_INCREMENT,
-  telefone CHAR(10) NOT NULL,
+  telefone CHAR(10),
   celular CHAR(11) NOT NULL,
   email VARCHAR(100),
   PRIMARY KEY (id_contato)
@@ -24,9 +24,9 @@ CREATE TABLE tb_alcateias (
 
 CREATE TABLE tb_usuarios ( 
   id_usuario int AUTO_INCREMENT, 
-  id_endereco int,
-  id_contato int,
-  id_alcateia int,
+  id_endereco int NOT NULL,
+  id_contato int NOT NULL,
+  id_alcateia int NOT NULL,
   nome varchar(70) NOT NULL, 
   cpf char(11) NOT NULL,
   login varchar(15) NOT NULL,
@@ -42,11 +42,22 @@ CREATE TABLE tb_usuarios (
 
 CREATE TABLE tb_encontros(
   id_encontro int AUTO_INCREMENT,
-  id_alcateia int,
+  id_alcateia int NOT NULL,
   data DATE NOT NULL,
   descricao TEXT(255) NOT NULL,
   PRIMARY KEY (id_encontro),
   FOREIGN KEY (id_alcateia) REFERENCES tb_alcateias (id_alcateia)
+);
+
+CREATE TABLE tb_frequencias(
+  id_frequencia int AUTO_INCREMENT,
+  id_usuario int NOT NULL,
+  id_encontro int NOT NULL,
+  frequencia BOOLEAN NOT NULL NOT NULL DEFAULT false,
+  PRIMARY KEY (id_frequencia),
+  FOREIGN KEY (id_usuario) REFERENCES tb_usuarios (id_usuario), 
+  FOREIGN KEY (id_encontro) REFERENCES tb_encontros (id_encontro)
+
 );
 
 /*Inserts alcateias*/
@@ -69,4 +80,7 @@ INSERT INTO tb_usuarios (id_endereco, id_contato, id_alcateia, nome, cpf, login,
 /*Inserts encontros*/
 INSERT INTO tb_encontros (id_alcateia, data, descricao) VALUES (1, '2020-01-01', 'Encontro 1');
 INSERT INTO tb_encontros (id_alcateia, data, descricao) VALUES (2, '2020-01-01', 'Encontro 2');
+
+INSERT INTO tb_frequencias (id_usuario, id_encontro, frequencia) VALUES (1, 1, TRUE);
+INSERT INTO tb_frequencias (id_usuario, id_encontro) VALUES (2, 1);
 

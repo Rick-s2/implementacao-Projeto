@@ -20,20 +20,28 @@
                         <tr>
                             <th>Data</th>
                             <th>Descrição</th>
+                            <th>Id da encateia</th>
                             <th>Alterar</th>
+                            <th>Lista de usuários</th>
                             <th>Excluir</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach($dados["lista"] as $alc): ?>
+                        <?php foreach($dados["lista"] as $enc): ?>
                             <tr>
-                                <td><?php echo $alc->getData(); ?></td>
-                                <td><?= $alc->getDescricao(); ?></td>
+                                <td><?php echo $enc->getData(); ?></td>
+                                <td><?= $enc->getDescricao(); ?></td>
+                                <td><?= $enc->getId_alcateia(); ?></td>
+
                                 <td><a class="btn btn-primary" 
-                                    href="<?= BASEURL ?>/controller/EncontroController.php?action=edit&id=<?= $alc->getId_encontro() ?>">
+                                    href="<?= BASEURL ?>/controller/EncontroController.php?action=edit&id=<?= $enc->getId_encontro() ?>">
                                     Alterar</a> 
                                 </td>
-                                <td><a class="btn btn-danger" onclick="return confirm('Deseja excluir ?')" href="<?= BASEURL ?>/controller/encontroController.php?action=delete&id=<?= $alc->getId_encontro() ?>">
+                                 <td><a class="btn btn-secondary" 
+                                    href="<?= BASEURL ?>/controller/EncontroController.php?action=edit&id=<?= $enc->getId_encontro() ?>">
+                                    Usuários</a> 
+                                </td>
+                                <td><a class="btn btn-danger" onclick="return confirm('Deseja excluir ?')" href="<?= BASEURL ?>/controller/encontroController.php?action=delete&id=<?= $enc->getId_encontro() ?>">
                                     Excluir</a> 
                                 </td>
                             </tr>
