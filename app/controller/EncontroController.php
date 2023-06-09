@@ -36,7 +36,7 @@ class EncontroController extends Controller {
         if($encontro){
 
             $dados["id_encontro"] = $encontro->getId_encontro();
-            $dados["encontro"] = $encontro;        
+            $dados["encontro"] = $encontro;      
             $this->loadView("encontro/formEncontro.php", $dados);
         } else {
             $this->list("Usuário não encontrado.");
@@ -55,7 +55,7 @@ class EncontroController extends Controller {
     }
 
     public function save(){
-       
+
         $dados["id_encontro"] = isset($_POST['id_encontro']) ? $_POST['id_encontro'] : 0;
         $dataEncontro = isset($_POST['dataEncontro']) ? trim($_POST['dataEncontro']) : NULL;
         $descricaoEncontro = isset($_POST['descricaoEncontro']) ? trim($_POST['descricaoEncontro']) : NULL;
@@ -70,7 +70,6 @@ class EncontroController extends Controller {
 
 
         $erros = $this->encontroService->validarDados($encontro);
-
         if(empty($erros)) {
             //Persiste o objeto
             try {

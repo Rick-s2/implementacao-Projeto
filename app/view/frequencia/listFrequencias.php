@@ -5,9 +5,7 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-3">
-            <a class="btn btn-success" href="<?= BASEURL ?>/controller/frequenciaController.php?action=create">Inserir</a>
-        </div>
+     
         <div class="col-9">
             <?php require_once(__DIR__ . "/../include/msg.php"); ?>
         </div>
@@ -27,7 +25,19 @@
                         <?php foreach($dados["lista"] as $freq): ?>
                             <tr>
                                 <td><?php echo $freq->getUsuario()->getNome(); ?></td>
-                                <td><?= $freq->getFrequencia(); ?></td>
+                                <td>
+                                    <?php 
+                                    if ($freq->getFrequencia() == 1) {
+                                        echo "<a class='btn btn-outline-success'
+                                         onclick=\"return confirm('Deseja alterar o status do usuário para INATIVO?')\" href='". BASEURL .
+                                         "/controller/FrequenciaController.php?action=updateToTrue&id=". $freq->getId_frequencia() ."'>C</a>";
+                                    } else {
+                                        echo "<a class='btn btn-outline-danger'
+                                         onclick=\"return confirm('Deseja alterar o status do usuário para ATIVO?')\" href='". BASEURL .
+                                         "/controller/FrequenciaController.php?action=updateToFalse&id=". $freq->getId_frequencia() ."'>F</a>";
+                                    }
+                                    ?>
+                                </td>
                                 </td>
                             </tr>
                         <?php endforeach; ?>

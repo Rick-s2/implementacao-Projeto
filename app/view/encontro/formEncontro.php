@@ -47,7 +47,7 @@
                         SelectAlcateia::desenhaSelect($alcateias, "alcateiaEncontro", "somAlcateia", isset($dados['id_alcateia']) ? $dados['id_alcateia'] : 0);
                     ?>
                 </div>
-                <input type="hidden" id="hddId" name="id_alcateia" value="<?php isset($dados['id_alcateia']); ?>" />
+                <input type="text" id="hddId" name="id_encontro" value="<?= $dados['id_encontro']; ?>" />
                 
                 <button type="submit" class="btn btn-success">Gravar</button>
                 <button type="reset" class="btn btn-danger">Limpar</button>
