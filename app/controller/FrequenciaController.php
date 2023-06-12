@@ -1,4 +1,7 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
 require_once(__DIR__ . "/Controller.php");
 require_once(__DIR__ . "/../dao/FrequenciaDAO.php");
@@ -36,7 +39,7 @@ class FrequenciaController extends Controller {
         $id = 0;
         $id = $_GET['idAlcateia'];
 
-        $usuarios = $this->frequenciaDao->findUsuariosById($id);
+        $usuarios = $this->frequenciaDao->findUsuariosByIdAcateia($id);
         return $usuarios;
     }
 
@@ -49,6 +52,7 @@ class FrequenciaController extends Controller {
 
     protected function updateToFalse(){
         $frequencia = $this->findFrequenciaById();
+    var_dump($frequencia);
         if($frequencia){
             $this->frequenciaDao->updateToFalse($frequencia->getId_frequencia());
             $this->list("","Frequencia alterada com sucesso.");

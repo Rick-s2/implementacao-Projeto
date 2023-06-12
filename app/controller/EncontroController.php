@@ -1,42 +1,33 @@
 <?php
 
 require_once(__DIR__ . "/Controller.php");
-require_once(__DIR__ . "/../dao/AlcateiaDAO.php");
 require_once(__DIR__ . "/../dao/EncontroDAO.php");
-require_once(__DIR__ . "/../dao/FrequenciaDAO.php");
-
 require_once(__DIR__ . "/../model/Encontro.php");
 require_once(__DIR__ . "/../model/Alcateia.php");
-require_once(__DIR__ . "/../model/Frequencia.php");
 require_once(__DIR__ . "/../service/EncontroService.php");
-
 
 class EncontroController extends Controller {
 
-    private EncontroDao $encontroDao;
+    private EncontroDAO $encontroDao;
     private EncontroService $encontroService;
-    private AlcateiaDao $alcateiaDao;
 
     public function __construct()
     {
         $this->encontroDao = new EncontroDAO();
-        $this->alcateiaDao = new AlcateiaDao();        
         $this->encontroService = new EncontroService();
-        $this->setActionDefault("list", true);
+        $this->setActionDefault("list");
         $this->handleAction();
     }
 
     public function list(string $msgErro = "", string $msgSucesso = ""){
         $encontros = $this->encontroDao->list();
-        $i = 0;
         $dados["lista"] = $encontros;
-        
-        $this->loadView("encontro/listEncontro.php", $dados, $msgErro, $msgSucesso, true);
+        $this->loadView("encontro/listEncontro.php", $dados, $msgErro, $msgSucesso);
     }
 
     public function create(){
         $dados["id_encontro"] = 0;
-        $this->loadView("encontro/formEncontro.php", $dados, "", "", true);
+        $this->loadView("encontro/formEncontro.php", $dados);
     }
 
     protected function edit() {
@@ -46,7 +37,7 @@ class EncontroController extends Controller {
 
             $dados["id_encontro"] = $encontro->getId_encontro();
             $dados["encontro"] = $encontro;      
-            $this->loadView("encontro/formEncontro.php", $dados, "", "", true);
+            $this->loadView("encontro/formEncontro.php", $dados);
         } else {
             $this->list("Usuário não encontrado.");
         }
@@ -77,16 +68,14 @@ class EncontroController extends Controller {
         $alcateia -> setId_alcateia($id_alcateia);
         $encontro->setAlcateia($alcateia);
 
-
-
         $erros = $this->encontroService->validarDados($encontro);
         if(empty($erros)) {
             //Persiste o objeto
             try {
                 
                 if($dados["id_encontro"] == 0){ //Inserindo
-                
                     $this->encontroService->insert($encontro);
+
                 }
                 else {//Alterando
 
@@ -110,10 +99,9 @@ class EncontroController extends Controller {
 
 
         $msgsErro = implode("<br>", $erros);
-        $this->loadView("encontro/formEncontro.php", $dados, $msgsErro, "", true);
+        $this->loadView("encontro/formEncontro.php", $dados, $msgsErro);
  
     }
-
 }
 
 $enctCont = new EncontroController();
