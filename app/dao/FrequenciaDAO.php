@@ -19,7 +19,7 @@ class FrequenciaDAO {
         return $this->mapFrequencia($result);
     }
 
-    public function findUsuariosById(int $id){
+    public function findUsuariosByIdAcateia(int $id){
         $conn = Connection::getConn();
 
         $sql = "SELECT * FROM tb_usuarios e" .
