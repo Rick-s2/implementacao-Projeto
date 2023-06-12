@@ -15,19 +15,19 @@ class EncontroController extends Controller {
     {
         $this->encontroDao = new EncontroDAO();
         $this->encontroService = new EncontroService();
-        $this->setActionDefault("list");
+        $this->setActionDefault("list", true);
         $this->handleAction();
     }
 
     public function list(string $msgErro = "", string $msgSucesso = ""){
         $encontros = $this->encontroDao->list();
         $dados["lista"] = $encontros;
-        $this->loadView("encontro/listEncontro.php", $dados, $msgErro, $msgSucesso);
+        $this->loadView("encontro/listEncontro.php", $dados, $msgErro, $msgSucesso, true);
     }
 
     public function create(){
         $dados["id_encontro"] = 0;
-        $this->loadView("encontro/formEncontro.php", $dados);
+        $this->loadView("encontro/formEncontro.php", $dados, "", "", true);
     }
 
     protected function edit() {
@@ -37,7 +37,7 @@ class EncontroController extends Controller {
 
             $dados["id_encontro"] = $encontro->getId_encontro();
             $dados["encontro"] = $encontro;      
-            $this->loadView("encontro/formEncontro.php", $dados);
+            $this->loadView("encontro/formEncontro.php", $dados, "", "", true);
         } else {
             $this->list("Usuário não encontrado.");
         }
@@ -99,7 +99,7 @@ class EncontroController extends Controller {
 
 
         $msgsErro = implode("<br>", $erros);
-        $this->loadView("encontro/formEncontro.php", $dados, $msgsErro);
+        $this->loadView("encontro/formEncontro.php", $dados, $msgsErro, "", true);
  
     }
 }
