@@ -68,7 +68,6 @@ class EncontroController extends Controller {
         $alcateia -> setId_alcateia($id_alcateia);
         $encontro->setAlcateia($alcateia);
 
-
         $erros = $this->encontroService->validarDados($encontro);
         if(empty($erros)) {
             //Persiste o objeto

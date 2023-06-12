@@ -25,3 +25,10 @@ ENCONTROS DA ALCATEIA
 LISTAR USUÁRIOS DA ALCATEIA
 CRIAR SELECT PARA SELECIONAR A ALCATEIA DO USUÁRIO
 
+{
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+}
+
+USAR ISSO NO TOPO DA PÁGINA PARA MOSTRAR ERROS
