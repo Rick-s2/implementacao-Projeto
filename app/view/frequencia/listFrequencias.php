@@ -29,13 +29,11 @@
                                 <td>
                                     <?php 
                                     if ($freq->getFrequencia() == 1) {
-                                        echo "<a class='btn btn-outline-success'
-                                         onclick=\"return confirm('Deseja alterar o status do usuário para INATIVO?')\" href='". BASEURL .
+                                        echo "<a class='btn btn-outline-success' href='". BASEURL .
                                          "/controller/FrequenciaController.php?action=updateToFalse&id=". $freq->getId_frequencia() .
                                          "&idAlcateia=". $freq->getUsuario()->getIdAlcateia() ."&idEncontro=". $freq->getId_encontro() ."'>C</a>";
                                     } else {
-                                        echo "<a class='btn btn-outline-danger'
-                                         onclick=\"return confirm('Deseja alterar o status do usuário para ATIVO?')\" href='". BASEURL .
+                                        echo "<a class='btn btn-outline-danger' href='". BASEURL .
                                          "/controller/FrequenciaController.php?action=updateToTrue&id=". $freq->getId_frequencia() .
                                          "&idAlcateia=". $freq->getUsuario()->getIdAlcateia() ."&idEncontro=". $freq->getId_encontro() ."'>F</a>";
                                     }

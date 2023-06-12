@@ -7,6 +7,20 @@ include_once(__DIR__ . "/../model/Usuario.php");
 
 class FrequenciaDAO {
 
+    public function create(array $frequencia) {
+        $conn = Connection::getConn();
+
+        foreach($frequencia as $freq) {
+
+        $sql = "INSERT INTO tb_frequencias (id_usuario, id_encontro)" .
+        " VALUES (:id_usuario, :id_encontro)";
+ 
+        $stm = $conn->prepare($sql);
+        $stm->bindValue(':id_usuario', $freq->getUsuario()->getId());
+        $stm->bindValue(':id_encontro', $freq->getId_encontro());
+        $stm->execute();
+        }
+    }
     public function list(){
 
         $conn = Connection::getConn();

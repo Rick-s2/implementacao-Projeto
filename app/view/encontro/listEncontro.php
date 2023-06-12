@@ -38,7 +38,8 @@
                                     Alterar</a> 
                                 </td>
                                  <td><a class="btn btn-secondary" 
-                                    href="<?= BASEURL ?>/controller/FrequenciaController.php?action=list&idEncontro=<?= $enc->getId_encontro()?>&idAlcateia=<?= $enc->getId_alcateia() ?>">
+                                    href="<?= BASEURL ?>/controller/FrequenciaController.php?action=createFrequencias&idEncontro=<?= 
+                                                        $enc->getId_encontro()?>&idAlcateia=<?= $enc->getId_alcateia() ?>">
                                     Usuários</a> 
                                 </td>
                                 <td><a class="btn btn-danger" onclick="return confirm('Deseja excluir ?')" href="<?= BASEURL ?>/controller/encontroController.php?action=delete&id=<?= $enc->getId_encontro() ?>">

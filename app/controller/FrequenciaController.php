@@ -14,8 +14,31 @@ class FrequenciaController extends Controller {
     public function __construct() {
         $this->frequenciaDao = new FrequenciaDAO();
 
-        $this->setActionDefault("list", false);    
+        $this->setActionDefault("createFrequencias", false);    
         $this->handleAction();
+    }
+
+    public function createFrequencias() {
+        $frequencias = array();
+        $frequenciasTest = $this->findFrequenciasByIdEncontro();
+        if($frequenciasTest) {
+            $this->list();
+        }
+        else{
+
+            $usuarios = $this->findUsuariosById();
+            $i = 0;
+            foreach ($usuarios as $us) {
+                $frequencia = new Frequencia();
+                $frequencia->setUsuario($usuarios[$i]);
+                $frequencia->setId_encontro($_GET['idEncontro']);
+                array_push($frequencias, $frequencia);
+                $i++;
+            }
+            $this->frequenciaDao->create($frequencias);
+            $this->list();
+
+        }
     }
 
     public function list(string $msgErro = "", string $msgSucesso = "") {
