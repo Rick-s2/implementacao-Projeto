@@ -40,7 +40,7 @@ class Controller {
 
     }
 
-    protected function loadView(string $path, array $dados, string $msgErro = "", string $msgSucesso = "") {
+    protected function loadView(string $path, array $dados, string $msgErro = "", string $msgSucesso = "", bool $fazer) {
         
         //Verificar os dados que estão sendo recebidos na função
         //print_r($dados);
@@ -51,9 +51,11 @@ class Controller {
         if(file_exists($caminho)) {
             require $caminho;
 
-            //Código para esconder os parâmetros da URL, inclusive o action
-            $url_parts = parse_url($_SERVER['REQUEST_URI']); //Divide a URL em 'path' e 'query'
-            echo "<script>window.history.replaceState({}, '', '{$url_parts['path']}');</script>"; 
+            if($fazer == true) { 
+                 $url_parts = parse_url($_SERVER['REQUEST_URI']); //Divide a URL em 'path' e 'query'
+                echo "<script>window.history.replaceState({}, '', '{$url_parts['path']}');</script>"; 
+            }//Código para esconder os parâmetros da URL, inclusive o action
+          
         } else {
             echo "Erro ao carrega a view solicitada<br>";
             echo "Caminho: " . $caminho;
@@ -99,8 +101,11 @@ class Controller {
      *
      * @return  self
      */ 
-    public function setActionDefault($actionDefault) {
-        $this->actionDefault = $actionDefault;
+    public function setActionDefault($actionDefault, $fazer) {
+    if($fazer == true)    
+    {
+    $this->actionDefault = $actionDefault; 
+    }
 
         return $this;
     }

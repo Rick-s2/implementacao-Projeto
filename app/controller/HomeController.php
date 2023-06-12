@@ -7,12 +7,12 @@ class HomeController extends Controller {
     public function __construct() {
         /*if(! $this->usuarioLogado())
             exit;*/
-        $this->setActionDefault('home');
+        $this->setActionDefault('home',true);
         $this->handleAction();
     }
 
     protected function home() {
-        $this->loadView("home/index.php", []);
+        $this->loadView("home/index.php", [], "", "", true);
     }
 }
 

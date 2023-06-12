@@ -13,25 +13,23 @@ class FrequenciaController extends Controller {
     public function __construct() {
         $this->frequenciaDao = new FrequenciaDAO();
 
-        $this->setActionDefault("list");    
+        $this->setActionDefault("list", false);    
         $this->handleAction();
     }
 
     public function list(string $msgErro = "", string $msgSucesso = "") {
        
-        $frequencias = $this->findFrequenciasById();
+        $frequencias = $this->findFrequenciasByIdEncontro();
         $usuarios = $this->findUsuariosById();
         $i = 0;
         foreach ($usuarios as $us) {
             $frequencias[$i]->setUsuario($usuarios[$i]);
             $i++;
         }
-     //   var_dump($usuarios);
-
         $dados["lista"] = $frequencias;
 
-       // $msgErro = ""; $msgSucesso = "";
-        $this->loadView("frequencia/listFrequencias.php", $dados,$msgErro, $msgSucesso);
+
+        $this->loadView("frequencia/listFrequencias.php", $dados,$msgErro, $msgSucesso, false);
     }
 
     public function findUsuariosById(){
@@ -41,12 +39,14 @@ class FrequenciaController extends Controller {
         $usuarios = $this->frequenciaDao->findUsuariosById($id);
         return $usuarios;
     }
-    public function findFrequenciasById(){
+
+    public function findFrequenciasByIdEncontro(){
         $id = 0;
         $id = $_GET['idEncontro'];
-        $frequencias = $this->frequenciaDao->findFrequenciaById($id);
+        $frequencias = $this->frequenciaDao->findFrequenciaByIdEncontro($id);
         return $frequencias;
     }
+
     protected function updateToFalse(){
         $frequencia = $this->findFrequenciaById();
         if($frequencia){
@@ -65,11 +65,11 @@ class FrequenciaController extends Controller {
             $this->list("Frequencia não encontrada.");
         }
     }
+
     protected function findFrequenciaById(){
         $id = 0;
         if(isset($_GET['id']))
             $id = $_GET['id'];
-
         $dados["id"] = $id;
 
         $frequencia = $this->frequenciaDao->findById($id);

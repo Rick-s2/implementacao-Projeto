@@ -23,7 +23,7 @@ class UsuarioController extends Controller {
         $this->contatoDao = new ContatoDAO();
         $this->usuarioService = new UsuarioService();
 
-        $this->setActionDefault("list");    
+        $this->setActionDefault("list", true);
         $this->handleAction();
     }
 
@@ -43,7 +43,7 @@ class UsuarioController extends Controller {
             $dados["papeis"] = UsuarioPapel::getAllAsArray();
             $usuario->setSenha("");
             $dados["usuario"] = $usuario;        
-            $this->loadView("usuario/profile.php", $dados);
+            $this->loadView("usuario/profile.php", $dados, "", "", true);
         } else {
             $this->list("Usuário não encontrado.");
         }
@@ -56,7 +56,7 @@ class UsuarioController extends Controller {
         //print_r($usuarios);
         $dados["lista"] = $usuarios;
 
-        $this->loadView("usuario/list.php", $dados,$msgErro, $msgSucesso);
+        $this->loadView("usuario/list.php", $dados,$msgErro, $msgSucesso, true);
     }
 
     protected function create() {
@@ -65,7 +65,7 @@ class UsuarioController extends Controller {
         $dados['id_endereco'] = 0;
 
         $dados["papeis"] = UsuarioPapel::getAllAsArray();
-        $this->loadView("usuario/form.php", $dados);
+        $this->loadView("usuario/form.php", $dados, "", "", true);
     }
 
     protected function edit() {
@@ -84,7 +84,7 @@ class UsuarioController extends Controller {
             $usuario->setSenha("");
             $dados["usuario"] = $usuario;        
 
-            $this->loadView("usuario/form.php", $dados);
+            $this->loadView("usuario/form.php", $dados, "", "", true);
         } else {
             $this->list("Usuário não encontrado.");
         }
@@ -202,7 +202,7 @@ class UsuarioController extends Controller {
         $dados["email"] = $email;
 
         $msgsErro = implode("<br>", $erros);
-        $this->loadView("usuario/form.php", $dados, $msgsErro);
+        $this->loadView("usuario/form.php", $dados, $msgsErro, "", "", true);
     }
 
     protected function delete(){

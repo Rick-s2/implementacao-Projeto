@@ -9,7 +9,7 @@ class AlcateiaDao{
 
         $conn = Connection::getConn();
 
-        $sql = "SELECT * FROM tb_alcateias a ORDER BY a.nome";
+        $sql = "SELECT * FROM tb_alcateias a ORDER BY a.id_alcateia";
         $stm = $conn->prepare($sql);    
         $stm->execute();
         $result = $stm->fetchAll();

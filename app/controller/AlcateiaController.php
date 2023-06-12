@@ -14,19 +14,19 @@ class AlcateiaController extends Controller{
 
         $this->alcateiaDao = new AlcateiaDAO();
         $this->alcateiaService = new AlcateiaService();
-        $this->setActionDefault("list");
+        $this->setActionDefault("list", true);
         $this->handleAction();
     }
 
     public function list(string $msgErro = "", string $msgSucesso = ""){
         $alcateias = $this->alcateiaDao->list();
         $dados["lista"] = $alcateias;
-        $this->loadView("alcateia/listAlcateia.php", $dados, $msgErro, $msgSucesso);
+        $this->loadView("alcateia/listAlcateia.php", $dados, $msgErro, $msgSucesso, true);
     }
 
     public function create(){
         $dados["id_alcateia"] = 0;
-        $this->loadView("alcateia/formAlcateia.php", $dados);
+        $this->loadView("alcateia/formAlcateia.php", $dados,"","", true);
     }
     
     protected function edit() {
@@ -36,7 +36,7 @@ class AlcateiaController extends Controller{
 
             $dados["id_alcateia"] = $alcateia->getId_alcateia();
             $dados["alcateia"] = $alcateia;        
-            $this->loadView("alcateia/formAlcateia.php", $dados);
+            $this->loadView("alcateia/formAlcateia.php", $dados, "", "", true);
         } else {
             $this->list("Usuário não encontrado.");
         }
@@ -90,7 +90,7 @@ class AlcateiaController extends Controller{
         $dados["nomeAlcateia"] = $nomeAlcateia;
 
         $msgsErro = implode("<br>", $erros);
-        $this->loadView("alcateia/formAlcateia.php", $dados, $msgsErro);
+        $this->loadView("alcateia/formAlcateia.php", $dados, $msgsErro, "", true);
  
     }
     

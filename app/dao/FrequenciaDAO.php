@@ -30,7 +30,7 @@ class FrequenciaDAO {
        return $this->mapUsuarios($result);
     }
 
-    public function findFrequenciaById(int $id){
+    public function findFrequenciaByIdEncontro(int $id){
         $conn = Connection::getConn();
 
         $sql = "SELECT * FROM tb_frequencias f" .
@@ -82,20 +82,20 @@ class FrequenciaDAO {
    }
    public function updateToFalse(){
         $conn = Connection::getConn();
-        $sql = "UPDATE tb_frequencias SET frequencia = false WHERE id_frequencia = :id";
+        $sql = "UPDATE tb_frequencias SET frequencia = 0 WHERE id_frequencia = :id";
         $stm = $conn->prepare($sql);
         $stm->bindValue("id", $_GET['id']);
         $stm->execute();
 }
     public function updateToTrue(){
         $conn = Connection::getConn();
-        $sql = "UPDATE tb_frequencias SET frequencia = true WHERE id_frequencia = :id";
+        $sql = "UPDATE tb_frequencias SET frequencia = 1 WHERE id_frequencia = :id";
         $stm = $conn->prepare($sql);
         $stm->bindValue("id", $_GET['id']);
         $stm->execute();
 }
   //Método para buscar um usuário por seu ID
-  public function findById(int $id) {
+    public function findById(int $id) {
     $conn = Connection::getConn();
 
     $sql = "SELECT * FROM tb_frequencias u" .
@@ -105,7 +105,6 @@ class FrequenciaDAO {
     $result = $stm->fetchAll();
 
     $frequencias = $this->mapFrequencia($result);
-
     if(count($frequencias) == 1)
         return $frequencias[0];
     elseif(count($frequencias) == 0)

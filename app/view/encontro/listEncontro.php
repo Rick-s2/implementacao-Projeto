@@ -20,7 +20,7 @@
                         <tr>
                             <th>Data</th>
                             <th>Descrição</th>
-                            <th>Id da encateia</th>
+                            <th>Id da alcateia</th>
                             <th>Alterar</th>
                             <th>Lista de usuários</th>
                             <th>Excluir</th>
