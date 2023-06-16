@@ -44,6 +44,7 @@
                         <?php endforeach; ?>
                     </tbody>
                 </table>
+                <a class="btn btn-success" href="<?= BASEURL ?>/controller/EncontroController.php?action=list">Voltar</a>
             </div>
         </div>
 </div>
