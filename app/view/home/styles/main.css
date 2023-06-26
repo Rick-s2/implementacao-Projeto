@@ -161,35 +161,15 @@ img{
 }
 
 
-.linha_nome{
-   height: 20%;
-   font-size: 15px;
-   justify-content: center;
-   
-}
-
-.linha_foto{
-    height: 50%;
-    justify-content: center;
-}
-
-.linha_num{
-    height: 20%;
-    font-size: 15px;
-    justify-content: center;
-
-}
-
-
-
-
-
 .form-group{
     
-    background-color: blue;
+    background-color: black;
     width: 530px;
     margin-left: 55px;
     border-radius: 20px;
+    text-align: center;
+    font-size: 25px;
+    color:aliceblue;
 }
 
 
@@ -202,13 +182,16 @@ img{
     margin-left: 30vh;
     margin-top: 52px;
     align-items: center center;
-    background-color:rgb(13, 136, 9) ;
+    background-color:whitesmoke ;
     border-radius: 15px;
     border: solid 1px black;
+    text-align: center;
 }
 
 .estilo_dados_form{
     
     border-radius: 10px;
+   
+   
     
     ;}
